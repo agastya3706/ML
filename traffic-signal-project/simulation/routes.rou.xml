@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    SUMO Vehicle Routes — 4-Way Intersection
+    ==========================================
+    Defines vehicle types and traffic flows for each approach road.
+    Flow rates simulate realistic urban traffic (600-1200 veh/hr peak).
+
+    Routes cover all turning movements:
+      - Straight through
+      - Left turn
+      - Right turn
+
+    Flow IDs encode: <origin>_<destination>
+      e.g. "flow_NS" = North approach going to South (straight)
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- ==================== VEHICLE TYPE ==================== -->
+    <vType id="car"
+           accel="2.6"
+           decel="4.5"
+           sigma="0.5"
+           length="5.0"
+           minGap="2.5"
+           maxSpeed="13.89"
+           guiShape="passenger"
+           color="1,1,0"/>
+
+    <!-- ==================== ROUTES ==================== -->
+    <!-- North approaches -->
+    <route id="route_N_S" edges="north_in south_out"/>
+    <route id="route_N_E" edges="north_in east_out"/>
+    <route id="route_N_W" edges="north_in west_out"/>
+
+    <!-- South approaches -->
+    <route id="route_S_N" edges="south_in north_out"/>
+    <route id="route_S_E" edges="south_in east_out"/>
+    <route id="route_S_W" edges="south_in west_out"/>
+
+    <!-- East approaches -->
+    <route id="route_E_W" edges="east_in west_out"/>
+    <route id="route_E_N" edges="east_in north_out"/>
+    <route id="route_E_S" edges="east_in south_out"/>
+
+    <!-- West approaches -->
+    <route id="route_W_E" edges="west_in east_out"/>
+    <route id="route_W_N" edges="west_in north_out"/>
+    <route id="route_W_S" edges="west_in south_out"/>
+
+    <!-- ==================== FLOWS ==================== -->
+    <!--
+        period = 1/flow_rate_per_second
+        600 veh/hr = 1 veh per 6s = period="6"
+        1200 veh/hr = 1 veh per 3s = period="3"
+
+        North (heavy traffic: 900 veh/hr avg)
+    -->
+    <flow id="flow_N_S" type="car" route="route_N_S" begin="0" end="3600" period="4"   departLane="0" departSpeed="max"/>
+    <flow id="flow_N_E" type="car" route="route_N_E" begin="0" end="3600" period="12"  departLane="0" departSpeed="max"/>
+    <flow id="flow_N_W" type="car" route="route_N_W" begin="0" end="3600" period="12"  departLane="0" departSpeed="max"/>
+
+    <!-- South (moderate traffic: 600 veh/hr avg) -->
+    <flow id="flow_S_N" type="car" route="route_S_N" begin="0" end="3600" period="6"   departLane="0" departSpeed="max"/>
+    <flow id="flow_S_E" type="car" route="route_S_E" begin="0" end="3600" period="18"  departLane="0" departSpeed="max"/>
+    <flow id="flow_S_W" type="car" route="route_S_W" begin="0" end="3600" period="18"  departLane="0" departSpeed="max"/>
+
+    <!-- East (heavy traffic: 1200 veh/hr avg) -->
+    <flow id="flow_E_W" type="car" route="route_E_W" begin="0" end="3600" period="3"   departLane="0" departSpeed="max"/>
+    <flow id="flow_E_N" type="car" route="route_E_N" begin="0" end="3600" period="9"   departLane="0" departSpeed="max"/>
+    <flow id="flow_E_S" type="car" route="route_E_S" begin="0" end="3600" period="9"   departLane="0" departSpeed="max"/>
+
+    <!-- West (light traffic: 400 veh/hr avg) -->
+    <flow id="flow_W_E" type="car" route="route_W_E" begin="0" end="3600" period="9"   departLane="0" departSpeed="max"/>
+    <flow id="flow_W_N" type="car" route="route_W_N" begin="0" end="3600" period="27"  departLane="0" departSpeed="max"/>
+    <flow id="flow_W_S" type="car" route="route_W_S" begin="0" end="3600" period="27"  departLane="0" departSpeed="max"/>
+
+</routes>

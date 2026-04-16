@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    SUMO Road Network — 4-Way Intersection
+    =======================================
+    Simple + intersection with 4 approach roads (N/S/E/W).
+    Each road has 1 lane, 50 km/h speed limit.
+
+    Node layout:
+                  north_node
+                      |
+    west_node — center_node — east_node
+                      |
+                  south_node
+
+    Edge naming convention:
+      <direction>_in  : vehicles travelling TOWARD intersection
+      <direction>_out : vehicles travelling AWAY from intersection
+-->
+<net version="1.16" junctionCornerDetail="5" limitTurnSpeed="5.83"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <!-- ==================== EDGE TYPES ==================== -->
+    <type id="road" priority="2" numLanes="1" speed="13.89" allow="passenger"/>
+
+    <!-- ==================== NODES ==================== -->
+    <!-- Center intersection node with traffic light -->
+    <node id="center"      x="0.00"    y="0.00"    type="traffic_light"/>
+
+    <!-- Approach nodes (200m from center) -->
+    <node id="north_node"  x="0.00"    y="200.00"  type="priority"/>
+    <node id="south_node"  x="0.00"    y="-200.00" type="priority"/>
+    <node id="east_node"   x="200.00"  y="0.00"    type="priority"/>
+    <node id="west_node"   x="-200.00" y="0.00"    type="priority"/>
+
+    <!-- ==================== EDGES (INBOUND) ==================== -->
+    <edge id="north_in"  from="north_node" to="center"     priority="2" numLanes="1" speed="13.89"/>
+    <edge id="south_in"  from="south_node" to="center"     priority="2" numLanes="1" speed="13.89"/>
+    <edge id="east_in"   from="east_node"  to="center"     priority="2" numLanes="1" speed="13.89"/>
+    <edge id="west_in"   from="west_node"  to="center"     priority="2" numLanes="1" speed="13.89"/>
+
+    <!-- ==================== EDGES (OUTBOUND) ==================== -->
+    <edge id="north_out" from="center"     to="north_node" priority="2" numLanes="1" speed="13.89"/>
+    <edge id="south_out" from="center"     to="south_node" priority="2" numLanes="1" speed="13.89"/>
+    <edge id="east_out"  from="center"     to="east_node"  priority="2" numLanes="1" speed="13.89"/>
+    <edge id="west_out"  from="center"     to="west_node"  priority="2" numLanes="1" speed="13.89"/>
+
+    <!-- ==================== CONNECTIONS ==================== -->
+    <!-- North → South, East, West (straight + turns) -->
+    <connection from="north_in" to="south_out" fromLane="0" toLane="0"/>
+    <connection from="north_in" to="east_out"  fromLane="0" toLane="0"/>
+    <connection from="north_in" to="west_out"  fromLane="0" toLane="0"/>
+
+    <!-- South → North, East, West -->
+    <connection from="south_in" to="north_out" fromLane="0" toLane="0"/>
+    <connection from="south_in" to="east_out"  fromLane="0" toLane="0"/>
+    <connection from="south_in" to="west_out"  fromLane="0" toLane="0"/>
+
+    <!-- East → West, North, South -->
+    <connection from="east_in" to="west_out"  fromLane="0" toLane="0"/>
+    <connection from="east_in" to="north_out" fromLane="0" toLane="0"/>
+    <connection from="east_in" to="south_out" fromLane="0" toLane="0"/>
+
+    <!-- West → East, North, South -->
+    <connection from="west_in" to="east_out"  fromLane="0" toLane="0"/>
+    <connection from="west_in" to="north_out" fromLane="0" toLane="0"/>
+    <connection from="west_in" to="south_out" fromLane="0" toLane="0"/>
+
+    <!-- ==================== TRAFFIC LIGHT ==================== -->
+    <!--
+        Phase plan (index: road order = NS pair, EW pair)
+        State chars: G=green, y=yellow, r=red
+        Connections order: north_in→*, south_in→*, east_in→*, west_in→*
+        Simplified: G for both N+S, r for E+W, then swap
+    -->
+    <tlLogic id="center" type="static" programID="0" offset="0">
+        <!-- Phase 0: North-South GREEN, East-West RED (30s) -->
+        <phase duration="30" state="GGGGrrrrGGGGrrrr"/>
+        <!-- Phase 1: North-South YELLOW (5s) -->
+        <phase duration="5"  state="yyyyrrrryyyyrrrr"/>
+        <!-- Phase 2: East-West GREEN, North-South RED (30s) -->
+        <phase duration="30" state="rrrrGGGGrrrrGGGG"/>
+        <!-- Phase 3: East-West YELLOW (5s) -->
+        <phase duration="5"  state="rrrryyyyrrrryyyy"/>
+    </tlLogic>
+
+</net>

@@ -1,0 +1,104 @@
+# ============================================================
+# Traffic Signal Optimization — Central Configuration
+# ============================================================
+
+# -----------------------------------------------------------
+# SUMO Simulation Settings
+# -----------------------------------------------------------
+sumo:
+  binary: "sumo-gui"                          # Use "sumo" for headless (faster training)
+  config_file: "simulation/config.sumocfg"   # Path to .sumocfg
+  max_steps: 3600                             # Simulation steps per episode (1 step = 1 second)
+  step_length: 1.0                            # Seconds per simulation step
+  gui_delay: 100                              # GUI delay in ms (0 = fastest)
+
+# -----------------------------------------------------------
+# Intersection / Road Network Settings
+# -----------------------------------------------------------
+intersection:
+  num_roads: 4                                # N, S, E, W approaches
+  road_ids:                                   # SUMO edge IDs
+    - "north_in"
+    - "south_in"
+    - "east_in"
+    - "west_in"
+  lane_ids:                                   # SUMO lane IDs (one lane per road)
+    - "north_in_0"
+    - "south_in_0"
+    - "east_in_0"
+    - "west_in_0"
+  tl_id: "center"                             # Traffic light node ID in SUMO
+  phases:                                     # Signal phase plan
+    - duration: 30                            # NS green
+      state: "GrGr"
+    - duration: 5                             # NS yellow
+      state: "yryr"
+    - duration: 30                            # EW green
+      state: "rGrG"
+    - duration: 5                             # EW yellow
+      state: "ryry"
+  min_green: 10                               # Minimum green time (seconds)
+  max_green: 60                               # Maximum green time (seconds)
+
+# -----------------------------------------------------------
+# STGCN (Prediction Agent) Settings
+# -----------------------------------------------------------
+stgcn:
+  Ks: 3                                       # Chebyshev polynomial order
+  num_blocks: 2                               # Number of ST-Conv blocks
+  in_channels: 1                              # Input features per node (vehicle count)
+  hidden_channels: 16                         # Hidden channels
+  out_channels: 64                            # Output channels of ST blocks
+  seq_len: 12                                 # Look-back window (timesteps)
+  pred_len: 1                                 # Steps ahead to predict
+  learning_rate: 0.001
+  epochs: 50
+  batch_size: 32
+  checkpoint_path: "models/stgcn/best_model.pth"
+  history_buffer_size: 500                    # Max samples stored from SUMO runs
+
+# -----------------------------------------------------------
+# RL Agent (DQN) Settings
+# -----------------------------------------------------------
+rl:
+  state_dim: 12                               # [counts(4), queues(4), predicted(4)]
+  action_dim: 4                               # One action per approach road
+  learning_rate: 0.001
+  gamma: 0.95                                 # Discount factor
+  epsilon_start: 1.0                          # Initial exploration rate
+  epsilon_decay: 0.995
+  epsilon_min: 0.01
+  batch_size: 64
+  memory_size: 10000                          # Replay buffer size
+  target_update_freq: 10                      # Episodes between target net sync
+  episodes: 300                               # Total training episodes
+  checkpoint_path: "rl_agents/best_dqn.pth"
+
+# -----------------------------------------------------------
+# Preprocessing Settings
+# -----------------------------------------------------------
+preprocessing:
+  normalize: true
+  normalize_method: "minmax"                  # Options: minmax, zscore
+  max_vehicle_count: 50                       # For normalization
+  max_queue_length: 30
+  max_waiting_time: 120
+
+# -----------------------------------------------------------
+# Evaluation Settings
+# -----------------------------------------------------------
+evaluation:
+  num_eval_episodes: 10
+  baselines:
+    - "fixed_timing"
+    - "random"
+    - "linear_regression"
+  results_dir: "evaluation/results"
+
+# -----------------------------------------------------------
+# Logging
+# -----------------------------------------------------------
+logging:
+  level: "INFO"
+  log_dir: "logs"
+  log_interval: 10                            # Log every N episodes

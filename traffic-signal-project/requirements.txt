@@ -1,0 +1,33 @@
+# ============================================================
+# Traffic Signal Optimization — Python Dependencies
+# ============================================================
+# Install with: pip install -r requirements.txt
+#
+# IMPORTANT: SUMO must be installed separately
+#   Download: https://sumo.dlr.de/docs/Downloads.php
+#   Set env var: SUMO_HOME = C:\Program Files (x86)\Eclipse\Sumo
+# ============================================================
+
+# Core scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Machine learning
+torch>=2.0.0
+torchvision>=0.15.0
+scikit-learn>=1.2.0
+
+# SUMO Python bindings (installed with SUMO, but also available via pip)
+traci>=1.18.0`AQXZG4FT5`Q
+sumolib>=1.18.0
+
+# Configuration
+pyyaml>=6.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Utilities
+tqdm>=4.65.0
+pandas>=2.0.0

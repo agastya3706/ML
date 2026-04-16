@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    SUMO Configuration File — Traffic Signal Project
+    =================================================
+    Run with:
+        sumo-gui -c simulation/config.sumocfg
+    or (headless):
+        sumo -c simulation/config.sumocfg
+
+    TraCI connects via port 8813 (default).
+-->
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <!-- ==================== INPUT FILES ==================== -->
+    <input>
+        <net-file value="network.net.xml"/>
+        <route-files value="routes.rou.xml"/>
+    </input>
+
+    <!-- ==================== SIMULATION TIME ==================== -->
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>         <!-- 1 hour; overridden by TraCI max_steps -->
+        <step-length value="1.0"/>  <!-- 1 second per step -->
+    </time>
+
+    <!-- ==================== GUI (only used with sumo-gui) ==================== -->
+    <gui_only>
+        <start value="true"/>         <!-- auto-start simulation -->
+        <quit-on-end value="false"/>  <!-- keep GUI open after sim ends -->
+        <delay value="100"/>          <!-- ms delay per step (0=max speed) -->
+    </gui_only>
+
+    <!-- ==================== PROCESSING ==================== -->
+    <processing>
+        <ignore-junction-blocker value="10"/>     <!-- seconds before ignoring blocked junctions -->
+        <time-to-teleport value="300"/>           <!-- teleport stuck vehicles after 5 min -->
+        <time-to-teleport.highways value="0"/>
+    </processing>
+
+    <!-- ==================== OUTPUT (optional diagnostics) ==================== -->
+    <output>
+        <!-- Uncomment to enable detailed output files -->
+        <!-- <summary-output value="data/raw/summary.xml"/> -->
+        <!-- <queue-output value="data/raw/queues.xml"/> -->
+        <!-- <tripinfo-output value="data/raw/tripinfo.xml"/> -->
+    </output>
+
+    <!-- ==================== RANDOM SEED ==================== -->
+    <random>
+        <seed value="42"/>
+    </random>
+
+</configuration>

@@ -1,0 +1,444 @@
+2026-04-16 15:42:11 | INFO     | __main__ | ============================================================
+2026-04-16 15:42:11 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 15:42:11 | INFO     | __main__ | Mode: GRAPH_TEST
+2026-04-16 15:42:11 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 15:42:11 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 15:42:11 | INFO     | __main__ | ============================================================
+2026-04-16 15:42:18 | INFO     | __main__ | === Graph Building Test ===
+2026-04-16 15:42:18 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 15:42:18 | INFO     | __main__ | Nodes: 4
+2026-04-16 15:42:18 | INFO     | __main__ | A_hat:
+[[0.39999998 0.19999999 0.19999999 0.19999999]
+ [0.19999999 0.39999998 0.19999999 0.19999999]
+ [0.19999999 0.19999999 0.39999998 0.19999999]
+ [0.19999999 0.19999999 0.19999999 0.39999998]]
+2026-04-16 15:42:18 | INFO     | __main__ | Chebyshev polynomials: 3
+2026-04-16 15:42:18 | WARNING  | __main__ | PyTorch not available: No module named 'torch'
+2026-04-16 15:42:18 | WARNING  | __main__ | PyTorch not available for DQN test: No module named 'torch'
+2026-04-16 15:42:18 | INFO     | __main__ | Done.
+2026-04-16 15:56:31 | INFO     | __main__ | ============================================================
+2026-04-16 15:56:31 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 15:56:31 | INFO     | __main__ | Mode: GRAPH_TEST
+2026-04-16 15:56:31 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 15:56:31 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 15:56:31 | INFO     | __main__ | ============================================================
+2026-04-16 15:56:35 | INFO     | __main__ | === Graph Building Test ===
+2026-04-16 15:56:35 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 15:56:35 | INFO     | __main__ | Nodes: 4
+2026-04-16 15:56:35 | INFO     | __main__ | A_hat:
+[[0.39999998 0.19999999 0.19999999 0.19999999]
+ [0.19999999 0.39999998 0.19999999 0.19999999]
+ [0.19999999 0.19999999 0.39999998 0.19999999]
+ [0.19999999 0.19999999 0.19999999 0.39999998]]
+2026-04-16 15:56:35 | INFO     | __main__ | Chebyshev polynomials: 3
+2026-04-16 15:56:42 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 15:56:42 | INFO     | __main__ | STGCN forward pass OK: torch.Size([2, 12, 4, 1]) -> torch.Size([2, 4])
+2026-04-16 15:56:42 | INFO     | __main__ | STGCN parameters: 54,340
+2026-04-16 15:56:45 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 15:56:45 | INFO     | __main__ | DQN agent OK: action=1, params=45,636
+2026-04-16 15:56:45 | INFO     | __main__ | === All tests passed [OK] ===
+2026-04-16 15:56:45 | INFO     | __main__ | Done.
+2026-04-16 16:00:49 | INFO     | __main__ | ============================================================
+2026-04-16 16:00:49 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:00:49 | INFO     | __main__ | Mode: GRAPH_TEST
+2026-04-16 16:00:49 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:00:49 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:00:49 | INFO     | __main__ | ============================================================
+2026-04-16 16:00:49 | INFO     | __main__ | === Graph Building Test ===
+2026-04-16 16:00:49 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:00:49 | INFO     | __main__ | Nodes: 4
+2026-04-16 16:00:49 | INFO     | __main__ | A_hat:
+[[0.39999998 0.19999999 0.19999999 0.19999999]
+ [0.19999999 0.39999998 0.19999999 0.19999999]
+ [0.19999999 0.19999999 0.39999998 0.19999999]
+ [0.19999999 0.19999999 0.19999999 0.39999998]]
+2026-04-16 16:00:49 | INFO     | __main__ | Chebyshev polynomials: 3
+2026-04-16 16:00:52 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:00:53 | INFO     | __main__ | STGCN forward pass OK: torch.Size([2, 12, 4, 1]) -> torch.Size([2, 4])
+2026-04-16 16:00:53 | INFO     | __main__ | STGCN parameters: 54,340
+2026-04-16 16:00:54 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:00:54 | INFO     | __main__ | DQN agent OK: action=0, params=45,636
+2026-04-16 16:00:54 | INFO     | __main__ | === All tests passed [OK] ===
+2026-04-16 16:00:54 | INFO     | __main__ | Done.
+2026-04-16 16:05:09 | INFO     | __main__ | ============================================================
+2026-04-16 16:05:09 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:05:09 | INFO     | __main__ | Mode: TRAIN_ALL
+2026-04-16 16:05:09 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:05:09 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:05:09 | INFO     | __main__ | ============================================================
+2026-04-16 16:05:14 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-16 16:05:14 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:05:14 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-16 16:05:14 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:05:14 | INFO     | __main__ | PHASE 1: Training STGCN Prediction Model
+2026-04-16 16:05:14 | INFO     | __main__ | ============================================================
+2026-04-16 16:05:14 | INFO     | integration.pipeline | Pipeline Step: Training STGCN...
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | STGCN Training — Starting data collection
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | SUMO not found — using SyntheticTrafficEnv (Python fallback).
+2026-04-16 16:05:14 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | No cache found — collecting data from SyntheticTrafficEnv...
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | History data cached to data/processed/stgcn_history.npz
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | Total data collected: 500 timesteps
+2026-04-16 16:05:14 | INFO     | preprocessing.data_cleaning | Cleaned traffic data: T=500 timesteps, N=4 roads.
+2026-04-16 16:05:14 | INFO     | preprocessing.data_cleaning | STGCN data prepared: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | Sequences ready: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:05:14 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:05:14 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:05:14 | INFO     | models.stgcn.train_stgcn | Training STGCN on device: cpu
+2026-04-16 16:05:18 | ERROR    | __main__ | Error in mode 'train_all': ReduceLROnPlateau.__init__() got an unexpected keyword argument 'verbose'
+Traceback (most recent call last):
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 272, in main
+    dispatch[args.mode]()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 266, in <lambda>
+    "train_all": lambda: mode_train_all(config, use_gui=use_gui),
+                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 149, in mode_train_all
+    pipeline.train_stgcn()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 71, in train_stgcn
+    run_stgcn_training(self.config)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\models\stgcn\train_stgcn.py", line 338, in run_stgcn_training
+    history_log = train_stgcn(model, X, y, config)
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\models\stgcn\train_stgcn.py", line 149, in train_stgcn
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, mode="min", factor=0.5, patience=5, verbose=True
+    )
+TypeError: ReduceLROnPlateau.__init__() got an unexpected keyword argument 'verbose'
+2026-04-16 16:05:54 | INFO     | __main__ | ============================================================
+2026-04-16 16:05:54 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:05:54 | INFO     | __main__ | Mode: TRAIN_ALL
+2026-04-16 16:05:54 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:05:54 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:05:54 | INFO     | __main__ | ============================================================
+2026-04-16 16:05:57 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-16 16:05:57 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:05:57 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-16 16:05:57 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:05:57 | INFO     | __main__ | PHASE 1: Training STGCN Prediction Model
+2026-04-16 16:05:57 | INFO     | __main__ | ============================================================
+2026-04-16 16:05:57 | INFO     | integration.pipeline | Pipeline Step: Training STGCN...
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | STGCN Training — Starting data collection
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | Loading cached data from data/processed/stgcn_history.npz
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | Total data collected: 500 timesteps
+2026-04-16 16:05:57 | INFO     | preprocessing.data_cleaning | Cleaned traffic data: T=500 timesteps, N=4 roads.
+2026-04-16 16:05:57 | INFO     | preprocessing.data_cleaning | STGCN data prepared: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | Sequences ready: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:05:57 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:05:57 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:05:57 | INFO     | models.stgcn.train_stgcn | Training STGCN on device: cpu
+2026-04-16 16:06:00 | INFO     | models.stgcn.train_stgcn | Training: 391 samples | Validation: 97 samples
+2026-04-16 16:06:00 | INFO     | models.stgcn.train_stgcn | Epochs: 50 | Batch size: 32 | LR: 0.001
+2026-04-16 16:06:00 | INFO     | models.stgcn.train_stgcn | Epoch [  1/50] Train Loss: 0.331808 | Val Loss: 0.123448 | Time: 0.5s
+2026-04-16 16:06:02 | INFO     | models.stgcn.train_stgcn | Epoch [  5/50] Train Loss: 0.025294 | Val Loss: 0.019917 | Time: 0.3s
+2026-04-16 16:06:03 | INFO     | models.stgcn.train_stgcn | Epoch [ 10/50] Train Loss: 0.015629 | Val Loss: 0.004593 | Time: 0.4s
+2026-04-16 16:06:05 | INFO     | models.stgcn.train_stgcn | Epoch [ 15/50] Train Loss: 0.013140 | Val Loss: 0.005765 | Time: 0.3s
+2026-04-16 16:06:06 | INFO     | models.stgcn.train_stgcn | Epoch [ 20/50] Train Loss: 0.010830 | Val Loss: 0.003704 | Time: 0.3s
+2026-04-16 16:06:08 | INFO     | models.stgcn.train_stgcn | Epoch [ 25/50] Train Loss: 0.010711 | Val Loss: 0.004629 | Time: 0.3s
+2026-04-16 16:06:10 | INFO     | models.stgcn.train_stgcn | Epoch [ 30/50] Train Loss: 0.009329 | Val Loss: 0.002861 | Time: 0.3s
+2026-04-16 16:06:11 | INFO     | models.stgcn.train_stgcn | Epoch [ 35/50] Train Loss: 0.008576 | Val Loss: 0.002054 | Time: 0.3s
+2026-04-16 16:06:13 | INFO     | models.stgcn.train_stgcn | Epoch [ 40/50] Train Loss: 0.007282 | Val Loss: 0.003017 | Time: 0.3s
+2026-04-16 16:06:15 | INFO     | models.stgcn.train_stgcn | Epoch [ 45/50] Train Loss: 0.007319 | Val Loss: 0.001822 | Time: 0.3s
+2026-04-16 16:06:16 | INFO     | models.stgcn.train_stgcn | Epoch [ 50/50] Train Loss: 0.007057 | Val Loss: 0.001801 | Time: 0.3s
+2026-04-16 16:06:16 | INFO     | models.stgcn.train_stgcn | 
+Training complete. Best model: epoch 41, val_loss=0.001756
+2026-04-16 16:06:16 | INFO     | models.stgcn.train_stgcn | Checkpoint saved to: models/stgcn/best_model.pth
+2026-04-16 16:06:22 | INFO     | models.stgcn.train_stgcn | Training loss plot saved to evaluation/results/stgcn_training_loss.png
+2026-04-16 16:06:22 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:06:22 | INFO     | models.stgcn.train_stgcn | Loaded STGCN checkpoint from epoch 41 (val_loss=0.001756)
+2026-04-16 16:06:22 | INFO     | integration.pipeline | STGCN model loaded from checkpoint.
+2026-04-16 16:06:22 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:06:22 | INFO     | __main__ | PHASE 2: Training DQN RL Agent
+2026-04-16 16:06:22 | INFO     | __main__ | ============================================================
+2026-04-16 16:06:22 | INFO     | integration.pipeline | Pipeline Step: Training DQN Agent...
+2026-04-16 16:06:22 | INFO     | rl_agents.train_agent | RL Training on device: cpu
+2026-04-16 16:06:22 | INFO     | rl_agents.train_agent | Using SyntheticTrafficEnv (SUMO not found).
+2026-04-16 16:06:22 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-16 16:06:22 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:06:22 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 16:06:22 | INFO     | rl_agents.train_agent | DQN Training: 50 episodes
+2026-04-16 16:06:22 | INFO     | rl_agents.train_agent | Agent: DQNAgent(state=12, actions=4, epsilon=1.000, buffer=0/10000, steps=0)
+2026-04-16 16:06:22 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 16:08:44 | INFO     | rl_agents.train_agent | 
+Training complete! Best model saved to: rl_agents/best_dqn.pth
+2026-04-16 16:08:44 | INFO     | rl_agents.train_agent | Training history saved.
+2026-04-16 16:08:45 | INFO     | rl_agents.train_agent | Training plots saved to evaluation/results/rl_training_curves.png
+2026-04-16 16:08:45 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:08:45 | ERROR    | __main__ | Error in mode 'train_all': Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy._core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy._core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy._core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+Traceback (most recent call last):
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 272, in main
+    dispatch[args.mode]()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 266, in <lambda>
+    "train_all": lambda: mode_train_all(config, use_gui=use_gui),
+                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 154, in mode_train_all
+    pipeline.train_rl(use_gui=use_gui)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 125, in train_rl
+    self._load_dqn()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 135, in _load_dqn
+    agent.load(ckpt)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\rl_agents\agent.py", line 316, in load
+    ckpt = torch.load(path, map_location=self.device)
+  File "C:\Users\Agastya Shetty\AppData\Local\Programs\Python\Python314\Lib\site-packages\torch\serialization.py", line 1578, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy._core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy._core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy._core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2026-04-16 16:13:33 | INFO     | __main__ | ============================================================
+2026-04-16 16:13:33 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:13:33 | INFO     | __main__ | Mode: TRAIN_ALL
+2026-04-16 16:13:33 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:13:33 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:13:33 | INFO     | __main__ | ============================================================
+2026-04-16 16:13:36 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-16 16:13:37 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:13:37 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-16 16:13:37 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:13:37 | INFO     | __main__ | PHASE 1: Training STGCN Prediction Model
+2026-04-16 16:13:37 | INFO     | __main__ | ============================================================
+2026-04-16 16:13:37 | INFO     | integration.pipeline | Pipeline Step: Training STGCN...
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | STGCN Training — Starting data collection
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | Loading cached data from data/processed/stgcn_history.npz
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | Total data collected: 500 timesteps
+2026-04-16 16:13:37 | INFO     | preprocessing.data_cleaning | Cleaned traffic data: T=500 timesteps, N=4 roads.
+2026-04-16 16:13:37 | INFO     | preprocessing.data_cleaning | STGCN data prepared: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | Sequences ready: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:13:37 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:13:37 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:13:37 | INFO     | models.stgcn.train_stgcn | Training STGCN on device: cpu
+2026-04-16 16:13:39 | INFO     | models.stgcn.train_stgcn | Training: 391 samples | Validation: 97 samples
+2026-04-16 16:13:39 | INFO     | models.stgcn.train_stgcn | Epochs: 50 | Batch size: 32 | LR: 0.001
+2026-04-16 16:13:39 | INFO     | models.stgcn.train_stgcn | Epoch [  1/50] Train Loss: 0.367736 | Val Loss: 0.187454 | Time: 0.4s
+2026-04-16 16:13:40 | INFO     | models.stgcn.train_stgcn | Epoch [  5/50] Train Loss: 0.024724 | Val Loss: 0.012696 | Time: 0.3s
+2026-04-16 16:13:42 | INFO     | models.stgcn.train_stgcn | Epoch [ 10/50] Train Loss: 0.017188 | Val Loss: 0.005001 | Time: 0.3s
+2026-04-16 16:13:44 | INFO     | models.stgcn.train_stgcn | Epoch [ 15/50] Train Loss: 0.013952 | Val Loss: 0.004365 | Time: 0.3s
+2026-04-16 16:13:45 | INFO     | models.stgcn.train_stgcn | Epoch [ 20/50] Train Loss: 0.013049 | Val Loss: 0.003468 | Time: 0.3s
+2026-04-16 16:13:47 | INFO     | models.stgcn.train_stgcn | Epoch [ 25/50] Train Loss: 0.009895 | Val Loss: 0.002896 | Time: 0.3s
+2026-04-16 16:13:48 | INFO     | models.stgcn.train_stgcn | Epoch [ 30/50] Train Loss: 0.009527 | Val Loss: 0.002427 | Time: 0.3s
+2026-04-16 16:13:50 | INFO     | models.stgcn.train_stgcn | Epoch [ 35/50] Train Loss: 0.008420 | Val Loss: 0.002240 | Time: 0.3s
+2026-04-16 16:13:51 | INFO     | models.stgcn.train_stgcn | Epoch [ 40/50] Train Loss: 0.007646 | Val Loss: 0.002077 | Time: 0.3s
+2026-04-16 16:13:53 | INFO     | models.stgcn.train_stgcn | Epoch [ 45/50] Train Loss: 0.008311 | Val Loss: 0.002136 | Time: 0.3s
+2026-04-16 16:13:55 | INFO     | models.stgcn.train_stgcn | Epoch [ 50/50] Train Loss: 0.008036 | Val Loss: 0.001899 | Time: 0.3s
+2026-04-16 16:13:55 | INFO     | models.stgcn.train_stgcn | 
+Training complete. Best model: epoch 48, val_loss=0.001885
+2026-04-16 16:13:55 | INFO     | models.stgcn.train_stgcn | Checkpoint saved to: models/stgcn/best_model.pth
+2026-04-16 16:13:56 | INFO     | models.stgcn.train_stgcn | Training loss plot saved to evaluation/results/stgcn_training_loss.png
+2026-04-16 16:13:56 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:13:56 | INFO     | models.stgcn.train_stgcn | Loaded STGCN checkpoint from epoch 48 (val_loss=0.001885)
+2026-04-16 16:13:56 | INFO     | integration.pipeline | STGCN model loaded from checkpoint.
+2026-04-16 16:13:56 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:13:56 | INFO     | __main__ | PHASE 2: Training DQN RL Agent
+2026-04-16 16:13:56 | INFO     | __main__ | ============================================================
+2026-04-16 16:13:56 | INFO     | integration.pipeline | Pipeline Step: Training DQN Agent...
+2026-04-16 16:13:56 | INFO     | rl_agents.train_agent | RL Training on device: cpu
+2026-04-16 16:13:56 | INFO     | rl_agents.train_agent | Using SyntheticTrafficEnv (SUMO not found).
+2026-04-16 16:13:56 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-16 16:13:56 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:13:56 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 16:13:56 | INFO     | rl_agents.train_agent | DQN Training: 50 episodes
+2026-04-16 16:13:56 | INFO     | rl_agents.train_agent | Agent: DQNAgent(state=12, actions=4, epsilon=1.000, buffer=0/10000, steps=0)
+2026-04-16 16:13:56 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 16:13:59 | INFO     | rl_agents.train_agent | Ep [   1/50] | Reward: -216.2494 | Avg(20): -216.2494 | Queue:  57.29 | Wait:  311.87s | Loss: 0.013481 | eps: 0.995 | Time: 2.7s
+2026-04-16 16:14:22 | INFO     | rl_agents.train_agent | Ep [  10/50] | Reward: -215.8404 | Avg(20): -220.0741 | Queue:  51.57 | Wait:  319.72s | Loss: 0.005205 | eps: 0.951 | Time: 2.5s
+2026-04-16 16:14:47 | INFO     | rl_agents.train_agent | Ep [  20/50] | Reward: -215.3153 | Avg(20): -220.7257 | Queue:  52.34 | Wait:  317.61s | Loss: 0.003719 | eps: 0.905 | Time: 2.7s
+2026-04-16 16:15:14 | INFO     | rl_agents.train_agent | Ep [  30/50] | Reward: -240.0175 | Avg(20): -220.3544 | Queue:  63.68 | Wait:  346.01s | Loss: 0.003800 | eps: 0.860 | Time: 2.8s
+2026-04-16 16:15:39 | INFO     | rl_agents.train_agent | Ep [  40/50] | Reward: -223.4786 | Avg(20): -214.9838 | Queue:  51.66 | Wait:  333.61s | Loss: 0.004552 | eps: 0.818 | Time: 2.8s
+2026-04-16 16:16:05 | INFO     | rl_agents.train_agent | Ep [  50/50] | Reward: -209.3929 | Avg(20): -213.1993 | Queue:  52.34 | Wait:  306.70s | Loss: 0.005527 | eps: 0.778 | Time: 2.4s
+2026-04-16 16:16:05 | INFO     | rl_agents.train_agent | 
+Training complete! Best model saved to: rl_agents/best_dqn.pth
+2026-04-16 16:16:05 | INFO     | rl_agents.train_agent | Training history saved.
+2026-04-16 16:16:06 | INFO     | rl_agents.train_agent | Training plots saved to evaluation/results/rl_training_curves.png
+2026-04-16 16:16:06 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:16:06 | ERROR    | __main__ | Error in mode 'train_all': Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy._core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy._core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy._core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+Traceback (most recent call last):
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 272, in main
+    dispatch[args.mode]()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 266, in <lambda>
+    "train_all": lambda: mode_train_all(config, use_gui=use_gui),
+                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 154, in mode_train_all
+    pipeline.train_rl(use_gui=use_gui)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 125, in train_rl
+    self._load_dqn()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 135, in _load_dqn
+    agent.load(ckpt)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\rl_agents\agent.py", line 316, in load
+    ckpt = torch.load(path, map_location=self.device)
+  File "C:\Users\Agastya Shetty\AppData\Local\Programs\Python\Python314\Lib\site-packages\torch\serialization.py", line 1578, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy._core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy._core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy._core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2026-04-16 16:16:07 | INFO     | __main__ | ============================================================
+2026-04-16 16:16:07 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:16:07 | INFO     | __main__ | Mode: EVAL
+2026-04-16 16:16:07 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:16:07 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:16:07 | INFO     | __main__ | ============================================================
+2026-04-16 16:16:11 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-16 16:16:11 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:16:11 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-16 16:16:14 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:16:14 | ERROR    | __main__ | Error in mode 'eval': Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy._core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy._core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy._core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+Traceback (most recent call last):
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 272, in main
+    dispatch[args.mode]()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 267, in <lambda>
+    "eval": lambda: mode_eval(config, num_episodes=num_ep),
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\main.py", line 162, in mode_eval
+    pipeline.evaluate(num_episodes=num_episodes)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 152, in evaluate
+    self._load_dqn()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\integration\pipeline.py", line 135, in _load_dqn
+    agent.load(ckpt)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\Agastya Shetty\OneDrive\Desktop\ML Project\traffic-signal-project\rl_agents\agent.py", line 316, in load
+    ckpt = torch.load(path, map_location=self.device)
+  File "C:\Users\Agastya Shetty\AppData\Local\Programs\Python\Python314\Lib\site-packages\torch\serialization.py", line 1578, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy._core.multiarray.scalar was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy._core.multiarray.scalar])` or the `torch.serialization.safe_globals([numpy._core.multiarray.scalar])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2026-04-16 16:36:16 | INFO     | __main__ | ============================================================
+2026-04-16 16:36:16 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:36:16 | INFO     | __main__ | Mode: TRAIN_ALL
+2026-04-16 16:36:16 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:36:16 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:36:16 | INFO     | __main__ | ============================================================
+2026-04-16 16:36:21 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-16 16:36:22 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:36:22 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-16 16:36:22 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:36:22 | INFO     | __main__ | PHASE 1: Training STGCN Prediction Model
+2026-04-16 16:36:22 | INFO     | __main__ | ============================================================
+2026-04-16 16:36:22 | INFO     | integration.pipeline | Pipeline Step: Training STGCN...
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | STGCN Training — Starting data collection
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | Loading cached data from data/processed/stgcn_history.npz
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | Total data collected: 500 timesteps
+2026-04-16 16:36:22 | INFO     | preprocessing.data_cleaning | Cleaned traffic data: T=500 timesteps, N=4 roads.
+2026-04-16 16:36:22 | INFO     | preprocessing.data_cleaning | STGCN data prepared: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | Sequences ready: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 16:36:22 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:36:22 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:36:22 | INFO     | models.stgcn.train_stgcn | Training STGCN on device: cpu
+2026-04-16 16:36:25 | INFO     | models.stgcn.train_stgcn | Training: 391 samples | Validation: 97 samples
+2026-04-16 16:36:25 | INFO     | models.stgcn.train_stgcn | Epochs: 50 | Batch size: 32 | LR: 0.001
+2026-04-16 16:36:25 | INFO     | models.stgcn.train_stgcn | Epoch [  1/50] Train Loss: 0.388604 | Val Loss: 0.209246 | Time: 0.5s
+2026-04-16 16:36:27 | INFO     | models.stgcn.train_stgcn | Epoch [  5/50] Train Loss: 0.022862 | Val Loss: 0.010226 | Time: 0.3s
+2026-04-16 16:36:28 | INFO     | models.stgcn.train_stgcn | Epoch [ 10/50] Train Loss: 0.013531 | Val Loss: 0.005220 | Time: 0.3s
+2026-04-16 16:36:30 | INFO     | models.stgcn.train_stgcn | Epoch [ 15/50] Train Loss: 0.016983 | Val Loss: 0.009892 | Time: 0.3s
+2026-04-16 16:36:32 | INFO     | models.stgcn.train_stgcn | Epoch [ 20/50] Train Loss: 0.009819 | Val Loss: 0.003662 | Time: 0.3s
+2026-04-16 16:36:33 | INFO     | models.stgcn.train_stgcn | Epoch [ 25/50] Train Loss: 0.010962 | Val Loss: 0.002657 | Time: 0.3s
+2026-04-16 16:36:35 | INFO     | models.stgcn.train_stgcn | Epoch [ 30/50] Train Loss: 0.009806 | Val Loss: 0.003122 | Time: 0.5s
+2026-04-16 16:36:37 | INFO     | models.stgcn.train_stgcn | Epoch [ 35/50] Train Loss: 0.008898 | Val Loss: 0.002693 | Time: 0.5s
+2026-04-16 16:36:39 | INFO     | models.stgcn.train_stgcn | Epoch [ 40/50] Train Loss: 0.009080 | Val Loss: 0.002514 | Time: 0.3s
+2026-04-16 16:36:41 | INFO     | models.stgcn.train_stgcn | Epoch [ 45/50] Train Loss: 0.009070 | Val Loss: 0.002395 | Time: 0.3s
+2026-04-16 16:36:42 | INFO     | models.stgcn.train_stgcn | Epoch [ 50/50] Train Loss: 0.008193 | Val Loss: 0.002685 | Time: 0.3s
+2026-04-16 16:36:42 | INFO     | models.stgcn.train_stgcn | 
+Training complete. Best model: epoch 39, val_loss=0.002258
+2026-04-16 16:36:42 | INFO     | models.stgcn.train_stgcn | Checkpoint saved to: models/stgcn/best_model.pth
+2026-04-16 16:36:44 | INFO     | models.stgcn.train_stgcn | Training loss plot saved to evaluation/results/stgcn_training_loss.png
+2026-04-16 16:36:44 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:36:44 | INFO     | models.stgcn.train_stgcn | Loaded STGCN checkpoint from epoch 39 (val_loss=0.002258)
+2026-04-16 16:36:44 | INFO     | integration.pipeline | STGCN model loaded from checkpoint.
+2026-04-16 16:36:44 | INFO     | __main__ | 
+============================================================
+2026-04-16 16:36:44 | INFO     | __main__ | PHASE 2: Training DQN RL Agent
+2026-04-16 16:36:44 | INFO     | __main__ | ============================================================
+2026-04-16 16:36:44 | INFO     | integration.pipeline | Pipeline Step: Training DQN Agent...
+2026-04-16 16:36:44 | INFO     | rl_agents.train_agent | RL Training on device: cpu
+2026-04-16 16:36:44 | INFO     | rl_agents.train_agent | Using SyntheticTrafficEnv (SUMO not found).
+2026-04-16 16:36:44 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-16 16:36:44 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:36:44 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 16:36:44 | INFO     | rl_agents.train_agent | DQN Training: 50 episodes
+2026-04-16 16:36:44 | INFO     | rl_agents.train_agent | Agent: DQNAgent(state=12, actions=4, epsilon=1.000, buffer=0/10000, steps=0)
+2026-04-16 16:36:44 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 16:36:47 | INFO     | rl_agents.train_agent | Ep [   1/50] | Reward: -221.9966 | Avg(20): -221.9966 | Queue:  52.33 | Wait:  329.89s | Loss: 0.005540 | eps: 0.995 | Time: 2.9s
+2026-04-16 16:37:11 | INFO     | rl_agents.train_agent | Ep [  10/50] | Reward: -223.6555 | Avg(20): -218.8311 | Queue:  53.52 | Wait:  331.15s | Loss: 0.002796 | eps: 0.951 | Time: 2.7s
+2026-04-16 16:37:39 | INFO     | rl_agents.train_agent | Ep [  20/50] | Reward: -201.6170 | Avg(20): -218.4007 | Queue:  54.03 | Wait:  289.88s | Loss: 0.002217 | eps: 0.905 | Time: 2.9s
+2026-04-16 16:38:07 | INFO     | rl_agents.train_agent | Ep [  30/50] | Reward: -224.4380 | Avg(20): -219.7630 | Queue:  61.07 | Wait:  321.26s | Loss: 0.002800 | eps: 0.860 | Time: 3.3s
+2026-04-16 16:38:35 | INFO     | rl_agents.train_agent | Ep [  40/50] | Reward: -213.5381 | Avg(20): -217.4892 | Queue:  56.01 | Wait:  308.82s | Loss: 0.004021 | eps: 0.818 | Time: 3.0s
+2026-04-16 16:39:04 | INFO     | rl_agents.train_agent | Ep [  50/50] | Reward: -213.0111 | Avg(20): -214.0473 | Queue:  54.12 | Wait:  310.69s | Loss: 0.005281 | eps: 0.778 | Time: 2.6s
+2026-04-16 16:39:04 | INFO     | rl_agents.train_agent | 
+Training complete! Best model saved to: rl_agents/best_dqn.pth
+2026-04-16 16:39:04 | INFO     | rl_agents.train_agent | Training history saved.
+2026-04-16 16:39:05 | INFO     | rl_agents.train_agent | Training plots saved to evaluation/results/rl_training_curves.png
+2026-04-16 16:39:05 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:39:05 | INFO     | rl_agents.agent | DQN checkpoint loaded: rl_agents/best_dqn.pth
+  Episode: 45,   Best reward: -214.0448
+2026-04-16 16:39:05 | INFO     | integration.pipeline | DQN agent loaded from checkpoint.
+2026-04-16 16:39:05 | INFO     | __main__ | Done.
+2026-04-16 16:42:36 | INFO     | __main__ | ============================================================
+2026-04-16 16:42:36 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 16:42:36 | INFO     | __main__ | Mode: GRAPH_TEST
+2026-04-16 16:42:36 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 16:42:36 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 16:42:36 | INFO     | __main__ | ============================================================
+2026-04-16 16:42:37 | INFO     | __main__ | === Graph Building Test ===
+2026-04-16 16:42:37 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 16:42:37 | INFO     | __main__ | Nodes: 4
+2026-04-16 16:42:37 | INFO     | __main__ | A_hat:
+[[0.39999998 0.19999999 0.19999999 0.19999999]
+ [0.19999999 0.39999998 0.19999999 0.19999999]
+ [0.19999999 0.19999999 0.39999998 0.19999999]
+ [0.19999999 0.19999999 0.19999999 0.39999998]]
+2026-04-16 16:42:37 | INFO     | __main__ | Chebyshev polynomials: 3
+2026-04-16 16:42:42 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 16:42:42 | INFO     | __main__ | STGCN forward pass OK: torch.Size([2, 12, 4, 1]) -> torch.Size([2, 4])
+2026-04-16 16:42:42 | INFO     | __main__ | STGCN parameters: 54,340
+2026-04-16 16:42:45 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 16:42:45 | INFO     | __main__ | DQN agent OK: action=0, params=45,636
+2026-04-16 16:42:45 | INFO     | __main__ | === All tests passed [OK] ===
+2026-04-16 16:42:45 | INFO     | __main__ | Done.
