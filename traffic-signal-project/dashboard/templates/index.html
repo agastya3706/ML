@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Signal AI — Live Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <!-- ─── Header ─── -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">🚦</span>
+        <div>
+          <h1>Traffic Signal AI</h1>
+          <p class="subtitle">Real-Time Signal Optimization · STGCN + DQN</p>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="badge" id="agent-badge">DQN Agent</span>
+      <div class="status-dot" id="status-dot"></div>
+      <span class="status-text" id="status-text">Idle</span>
+    </div>
+  </header>
+
+  <!-- ─── Main Grid ─── -->
+  <main class="main-grid">
+
+    <!-- ─── Left: Intersection Visualizer ─── -->
+    <section class="panel intersection-panel">
+      <div class="panel-header">
+        <h2>Intersection View</h2>
+        <div class="phase-badge" id="phase-badge">NS Green</div>
+      </div>
+      <div class="intersection-wrapper">
+        <canvas id="intersection-canvas" width="960" height="480"></canvas>
+      </div>
+      <div class="phase-timer-bar-wrapper">
+        <div class="phase-timer-label">Phase Timer</div>
+        <div class="phase-timer-bar-track">
+          <div class="phase-timer-bar-fill" id="timer-bar"></div>
+        </div>
+        <span class="phase-timer-val" id="timer-val">30s</span>
+      </div>
+      <div class="road-labels">
+        <div class="rl rl-north">↑ North <span id="q-N">0</span>🚗</div>
+        <div class="rl rl-east">East <span id="q-E">0</span>🚗 →</div>
+        <div class="rl rl-south">South <span id="q-S">0</span>🚗 ↓</div>
+        <div class="rl rl-west">← West <span id="q-W">0</span>🚗</div>
+      </div>
+    </section>
+
+    <!-- ─── Middle: Metrics ─── -->
+    <section class="panel metrics-panel">
+      <div class="panel-header">
+        <h2>Live Metrics</h2>
+        <span class="mono" id="step-counter">Step 0</span>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-green">
+          <div class="kpi-label">Episode Reward</div>
+          <div class="kpi-value" id="kpi-reward">0.0000</div>
+          <div class="kpi-sub">Cumulative this episode</div>
+        </div>
+        <div class="kpi-card kpi-blue">
+          <div class="kpi-label">Avg Queue</div>
+          <div class="kpi-value" id="kpi-queue">0.00</div>
+          <div class="kpi-sub">Vehicles halted</div>
+        </div>
+        <div class="kpi-card kpi-orange">
+          <div class="kpi-label">Avg Wait</div>
+          <div class="kpi-value" id="kpi-wait">0.00s</div>
+          <div class="kpi-sub">Seconds per vehicle</div>
+        </div>
+        <div class="kpi-card kpi-purple">
+          <div class="kpi-label">Episode</div>
+          <div class="kpi-value" id="kpi-episode">1</div>
+          <div class="kpi-sub">Current simulation run</div>
+        </div>
+      </div>
+
+      <!-- AI Decision -->
+      <div class="ai-decision-box">
+        <div class="ai-label">AI Decision</div>
+        <div class="ai-action" id="ai-action">—</div>
+      </div>
+
+      <!-- Queue Bar Chart -->
+      <div class="queue-bars-section">
+        <div class="section-title">Queue Length per Road</div>
+        <div class="queue-bars">
+          <div class="queue-bar-item">
+            <div class="qb-label">North</div>
+            <div class="qb-track"><div class="qb-fill qb-blue" id="qb-N"></div></div>
+            <div class="qb-val" id="qbv-N">0</div>
+          </div>
+          <div class="queue-bar-item">
+            <div class="qb-label">South</div>
+            <div class="qb-track"><div class="qb-fill qb-blue" id="qb-S"></div></div>
+            <div class="qb-val" id="qbv-S">0</div>
+          </div>
+          <div class="queue-bar-item">
+            <div class="qb-label">East</div>
+            <div class="qb-track"><div class="qb-fill qb-cyan" id="qb-E"></div></div>
+            <div class="qb-val" id="qbv-E">0</div>
+          </div>
+          <div class="queue-bar-item">
+            <div class="qb-label">West</div>
+            <div class="qb-track"><div class="qb-fill qb-cyan" id="qb-W"></div></div>
+            <div class="qb-val" id="qbv-W">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wait Time Bars -->
+      <div class="queue-bars-section">
+        <div class="section-title">Waiting Time per Road (s)</div>
+        <div class="queue-bars">
+          <div class="queue-bar-item">
+            <div class="qb-label">North</div>
+            <div class="qb-track"><div class="qb-fill qb-orange" id="wb-N"></div></div>
+            <div class="qb-val" id="wbv-N">0</div>
+          </div>
+          <div class="queue-bar-item">
+            <div class="qb-label">South</div>
+            <div class="qb-track"><div class="qb-fill qb-orange" id="wb-S"></div></div>
+            <div class="qb-val" id="wbv-S">0</div>
+          </div>
+          <div class="queue-bar-item">
+            <div class="qb-label">East</div>
+            <div class="qb-track"><div class="qb-fill qb-red" id="wb-E"></div></div>
+            <div class="qb-val" id="wbv-E">0</div>
+          </div>
+          <div class="queue-bar-item">
+            <div class="qb-label">West</div>
+            <div class="qb-track"><div class="qb-fill qb-red" id="wb-W"></div></div>
+            <div class="qb-val" id="wbv-W">0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Right: Charts + Controls ─── -->
+    <section class="panel charts-panel">
+      <div class="panel-header">
+        <h2>Trend Charts</h2>
+      </div>
+
+      <!-- Reward Chart -->
+      <div class="chart-section">
+        <div class="chart-label">Episode Reward</div>
+        <canvas id="reward-chart" height="110"></canvas>
+      </div>
+
+      <!-- Queue Chart -->
+      <div class="chart-section">
+        <div class="chart-label">Average Queue Length</div>
+        <canvas id="queue-chart" height="110"></canvas>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls-section">
+        <div class="section-title">Simulation Controls</div>
+        <div class="controls-row">
+          <button class="btn btn-green" id="btn-start" onclick="startSim()">▶ Start</button>
+          <button class="btn btn-yellow" id="btn-pause" onclick="pauseSim()">⏸ Pause</button>
+          <button class="btn btn-red" id="btn-reset" onclick="resetSim()">↺ Reset</button>
+        </div>
+        <div class="speed-row">
+          <span class="speed-label">Speed</span>
+          <input type="range" id="speed-slider" min="1" max="10" value="2" oninput="setSpeed(this.value)">
+          <span class="speed-val" id="speed-val">2×</span>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend-section">
+        <div class="section-title">Signal Phase Legend</div>
+        <div class="legend-grid">
+          <div class="legend-item"><span class="leg-dot" style="background:#22c55e"></span>NS Green</div>
+          <div class="legend-item"><span class="leg-dot" style="background:#eab308"></span>NS Yellow</div>
+          <div class="legend-item"><span class="leg-dot" style="background:#3b82f6"></span>EW Green</div>
+          <div class="legend-item"><span class="leg-dot" style="background:#f97316"></span>EW Yellow</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/static/simulation.js"></script>
+</body>
+</html>

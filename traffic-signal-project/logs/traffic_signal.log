@@ -442,3 +442,192 @@ Training complete! Best model saved to: rl_agents/best_dqn.pth
 2026-04-16 16:42:45 | INFO     | __main__ | DQN agent OK: action=0, params=45,636
 2026-04-16 16:42:45 | INFO     | __main__ | === All tests passed [OK] ===
 2026-04-16 16:42:45 | INFO     | __main__ | Done.
+2026-04-16 23:38:34 | INFO     | __main__ | ============================================================
+2026-04-16 23:38:34 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-16 23:38:34 | INFO     | __main__ | Mode: TRAIN_ALL
+2026-04-16 23:38:34 | INFO     | __main__ | Config: config/config.yaml
+2026-04-16 23:38:34 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-16 23:38:34 | INFO     | __main__ | ============================================================
+2026-04-16 23:38:48 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-16 23:38:50 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 23:38:50 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-16 23:38:50 | INFO     | __main__ | 
+============================================================
+2026-04-16 23:38:50 | INFO     | __main__ | PHASE 1: Training STGCN Prediction Model
+2026-04-16 23:38:50 | INFO     | __main__ | ============================================================
+2026-04-16 23:38:50 | INFO     | integration.pipeline | Pipeline Step: Training STGCN...
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | STGCN Training — Starting data collection
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | Loading cached data from data/processed/stgcn_history.npz
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | Total data collected: 500 timesteps
+2026-04-16 23:38:50 | INFO     | preprocessing.data_cleaning | Cleaned traffic data: T=500 timesteps, N=4 roads.
+2026-04-16 23:38:50 | INFO     | preprocessing.data_cleaning | STGCN data prepared: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | Sequences ready: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-16 23:38:50 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-16 23:38:50 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 23:38:50 | INFO     | models.stgcn.train_stgcn | Training STGCN on device: cpu
+2026-04-16 23:38:55 | INFO     | models.stgcn.train_stgcn | Training: 391 samples | Validation: 97 samples
+2026-04-16 23:38:55 | INFO     | models.stgcn.train_stgcn | Epochs: 50 | Batch size: 32 | LR: 0.001
+2026-04-16 23:38:56 | INFO     | models.stgcn.train_stgcn | Epoch [  1/50] Train Loss: 0.498826 | Val Loss: 0.293909 | Time: 0.8s
+2026-04-16 23:38:58 | INFO     | models.stgcn.train_stgcn | Epoch [  5/50] Train Loss: 0.024555 | Val Loss: 0.013279 | Time: 0.4s
+2026-04-16 23:38:59 | INFO     | models.stgcn.train_stgcn | Epoch [ 10/50] Train Loss: 0.015045 | Val Loss: 0.004639 | Time: 0.3s
+2026-04-16 23:39:01 | INFO     | models.stgcn.train_stgcn | Epoch [ 15/50] Train Loss: 0.013695 | Val Loss: 0.004334 | Time: 0.3s
+2026-04-16 23:39:03 | INFO     | models.stgcn.train_stgcn | Epoch [ 20/50] Train Loss: 0.010984 | Val Loss: 0.003255 | Time: 0.3s
+2026-04-16 23:39:04 | INFO     | models.stgcn.train_stgcn | Epoch [ 25/50] Train Loss: 0.010060 | Val Loss: 0.004613 | Time: 0.4s
+2026-04-16 23:39:06 | INFO     | models.stgcn.train_stgcn | Epoch [ 30/50] Train Loss: 0.009083 | Val Loss: 0.003547 | Time: 0.4s
+2026-04-16 23:39:08 | INFO     | models.stgcn.train_stgcn | Epoch [ 35/50] Train Loss: 0.009145 | Val Loss: 0.002604 | Time: 0.3s
+2026-04-16 23:39:09 | INFO     | models.stgcn.train_stgcn | Epoch [ 40/50] Train Loss: 0.008799 | Val Loss: 0.002097 | Time: 0.3s
+2026-04-16 23:39:11 | INFO     | models.stgcn.train_stgcn | Epoch [ 45/50] Train Loss: 0.007655 | Val Loss: 0.002846 | Time: 0.3s
+2026-04-16 23:39:13 | INFO     | models.stgcn.train_stgcn | Epoch [ 50/50] Train Loss: 0.007805 | Val Loss: 0.002489 | Time: 0.3s
+2026-04-16 23:39:13 | INFO     | models.stgcn.train_stgcn | 
+Training complete. Best model: epoch 46, val_loss=0.002070
+2026-04-16 23:39:13 | INFO     | models.stgcn.train_stgcn | Checkpoint saved to: models/stgcn/best_model.pth
+2026-04-16 23:39:18 | INFO     | models.stgcn.train_stgcn | Training loss plot saved to evaluation/results/stgcn_training_loss.png
+2026-04-16 23:39:18 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-16 23:39:18 | INFO     | models.stgcn.train_stgcn | Loaded STGCN checkpoint from epoch 46 (val_loss=0.002070)
+2026-04-16 23:39:18 | INFO     | integration.pipeline | STGCN model loaded from checkpoint.
+2026-04-16 23:39:18 | INFO     | __main__ | 
+============================================================
+2026-04-16 23:39:18 | INFO     | __main__ | PHASE 2: Training DQN RL Agent
+2026-04-16 23:39:18 | INFO     | __main__ | ============================================================
+2026-04-16 23:39:18 | INFO     | integration.pipeline | Pipeline Step: Training DQN Agent...
+2026-04-16 23:39:18 | INFO     | rl_agents.train_agent | RL Training on device: cpu
+2026-04-16 23:39:18 | INFO     | rl_agents.train_agent | Using SyntheticTrafficEnv (SUMO not found).
+2026-04-16 23:39:18 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-16 23:39:18 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 23:39:18 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 23:39:18 | INFO     | rl_agents.train_agent | DQN Training: 300 episodes
+2026-04-16 23:39:18 | INFO     | rl_agents.train_agent | Agent: DQNAgent(state=12, actions=4, epsilon=1.000, buffer=0/10000, steps=0)
+2026-04-16 23:39:18 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-16 23:39:20 | INFO     | rl_agents.train_agent | Ep [   1/300] | Reward: -220.1475 | Avg(20): -220.1475 | Queue:  50.00 | Wait:  329.97s | Loss: 0.007918 | eps: 0.995 | Time: 2.7s
+2026-04-16 23:39:44 | INFO     | rl_agents.train_agent | Ep [  10/300] | Reward: -219.1881 | Avg(20): -224.7527 | Queue:  50.53 | Wait:  327.42s | Loss: 0.004807 | eps: 0.951 | Time: 2.9s
+2026-04-16 23:40:11 | INFO     | rl_agents.train_agent | Ep [  20/300] | Reward: -221.2495 | Avg(20): -220.9774 | Queue:  49.82 | Wait:  332.29s | Loss: 0.003774 | eps: 0.905 | Time: 2.7s
+2026-04-16 23:40:39 | INFO     | rl_agents.train_agent | Ep [  30/300] | Reward: -230.0430 | Avg(20): -218.2204 | Queue:  56.01 | Wait:  339.16s | Loss: 0.002832 | eps: 0.860 | Time: 2.5s
+2026-04-16 23:41:02 | INFO     | rl_agents.train_agent | Ep [  40/300] | Reward: -217.9508 | Avg(20): -216.3122 | Queue:  58.00 | Wait:  313.96s | Loss: 0.003019 | eps: 0.818 | Time: 2.4s
+2026-04-16 23:41:28 | INFO     | rl_agents.train_agent | Ep [  50/300] | Reward: -201.9227 | Avg(20): -210.6205 | Queue:  51.59 | Wait:  294.08s | Loss: 0.003278 | eps: 0.778 | Time: 2.5s
+2026-04-16 23:41:54 | INFO     | rl_agents.train_agent | Ep [  60/300] | Reward: -218.0536 | Avg(20): -209.0766 | Queue:  57.31 | Wait:  315.17s | Loss: 0.004174 | eps: 0.740 | Time: 2.4s
+2026-04-16 23:42:21 | INFO     | rl_agents.train_agent | Ep [  70/300] | Reward: -197.6464 | Avg(20): -207.1679 | Queue:  53.05 | Wait:  284.04s | Loss: 0.005737 | eps: 0.704 | Time: 2.7s
+2026-04-16 23:42:49 | INFO     | rl_agents.train_agent | Ep [  80/300] | Reward: -209.3060 | Avg(20): -205.4111 | Queue:  56.69 | Wait:  300.01s | Loss: 0.007205 | eps: 0.670 | Time: 2.5s
+2026-04-16 23:43:14 | INFO     | rl_agents.train_agent | Ep [  90/300] | Reward: -208.6504 | Avg(20): -206.2530 | Queue:  55.28 | Wait:  300.93s | Loss: 0.008953 | eps: 0.637 | Time: 2.4s
+2026-04-16 23:43:39 | INFO     | rl_agents.train_agent | Ep [ 100/300] | Reward: -194.2930 | Avg(20): -202.7915 | Queue:  55.19 | Wait:  274.65s | Loss: 0.010040 | eps: 0.606 | Time: 2.5s
+2026-04-16 23:44:05 | INFO     | rl_agents.train_agent | Ep [ 110/300] | Reward: -196.2308 | Avg(20): -202.2724 | Queue:  50.62 | Wait:  285.07s | Loss: 0.011808 | eps: 0.576 | Time: 2.7s
+2026-04-16 23:44:29 | INFO     | rl_agents.train_agent | Ep [ 120/300] | Reward: -210.0664 | Avg(20): -204.1076 | Queue:  48.79 | Wait:  313.26s | Loss: 0.013001 | eps: 0.548 | Time: 2.4s
+2026-04-16 23:44:58 | INFO     | rl_agents.train_agent | Ep [ 130/300] | Reward: -209.2275 | Avg(20): -205.3689 | Queue:  47.64 | Wait:  313.45s | Loss: 0.013926 | eps: 0.521 | Time: 2.6s
+2026-04-16 23:45:22 | INFO     | rl_agents.train_agent | Ep [ 140/300] | Reward: -205.3431 | Avg(20): -204.4614 | Queue:  50.46 | Wait:  302.08s | Loss: 0.015476 | eps: 0.496 | Time: 2.4s
+2026-04-16 23:45:46 | INFO     | rl_agents.train_agent | Ep [ 150/300] | Reward: -205.7633 | Avg(20): -203.4302 | Queue:  53.97 | Wait:  297.58s | Loss: 0.019203 | eps: 0.471 | Time: 2.5s
+2026-04-16 23:46:10 | INFO     | rl_agents.train_agent | Ep [ 160/300] | Reward: -207.9288 | Avg(20): -204.7045 | Queue:  51.79 | Wait:  304.85s | Loss: 0.019436 | eps: 0.448 | Time: 2.4s
+2026-04-16 23:46:34 | INFO     | rl_agents.train_agent | Ep [ 170/300] | Reward: -198.3537 | Avg(20): -206.7176 | Queue:  46.03 | Wait:  295.89s | Loss: 0.020486 | eps: 0.427 | Time: 2.4s
+2026-04-16 23:47:00 | INFO     | rl_agents.train_agent | Ep [ 180/300] | Reward: -199.4944 | Avg(20): -208.3662 | Queue:  46.67 | Wait:  297.00s | Loss: 0.020578 | eps: 0.406 | Time: 3.0s
+2026-04-16 23:47:27 | INFO     | rl_agents.train_agent | Ep [ 190/300] | Reward: -192.1450 | Avg(20): -202.3186 | Queue:  54.40 | Wait:  271.86s | Loss: 0.020418 | eps: 0.386 | Time: 2.4s
+2026-04-16 23:47:53 | INFO     | rl_agents.train_agent | Ep [ 200/300] | Reward: -209.2077 | Avg(20): -202.7385 | Queue:  52.37 | Wait:  306.29s | Loss: 0.023579 | eps: 0.367 | Time: 2.6s
+2026-04-16 23:48:35 | INFO     | rl_agents.train_agent | Ep [ 210/300] | Reward: -203.8038 | Avg(20): -207.7580 | Queue:  48.66 | Wait:  301.93s | Loss: 0.027280 | eps: 0.349 | Time: 5.4s
+2026-04-16 23:54:34 | INFO     | rl_agents.train_agent | Ep [ 220/300] | Reward: -216.1301 | Avg(20): -208.0151 | Queue:  44.99 | Wait:  330.12s | Loss: 0.030548 | eps: 0.332 | Time: 312.8s
+2026-04-16 23:55:07 | INFO     | rl_agents.train_agent | Ep [ 230/300] | Reward: -208.8500 | Avg(20): -212.2201 | Queue:  42.22 | Wait:  320.87s | Loss: 0.028371 | eps: 0.316 | Time: 2.7s
+2026-04-16 23:55:32 | INFO     | rl_agents.train_agent | Ep [ 240/300] | Reward: -204.6871 | Avg(20): -208.5522 | Queue:  52.09 | Wait:  298.39s | Loss: 0.031952 | eps: 0.300 | Time: 2.4s
+2026-04-16 23:55:57 | INFO     | rl_agents.train_agent | Ep [ 250/300] | Reward: -208.4142 | Avg(20): -206.2986 | Queue:  47.20 | Wait:  312.61s | Loss: 0.031307 | eps: 0.286 | Time: 2.5s
+2026-04-16 23:56:21 | INFO     | rl_agents.train_agent | Ep [ 260/300] | Reward: -197.0161 | Avg(20): -210.8198 | Queue:  42.06 | Wait:  299.36s | Loss: 0.038512 | eps: 0.272 | Time: 2.4s
+2026-04-16 23:56:46 | INFO     | rl_agents.train_agent | Ep [ 270/300] | Reward: -196.0627 | Avg(20): -205.5437 | Queue:  43.04 | Wait:  296.15s | Loss: 0.038918 | eps: 0.258 | Time: 2.5s
+2026-04-16 23:57:16 | INFO     | rl_agents.train_agent | Ep [ 280/300] | Reward: -210.9861 | Avg(20): -202.4506 | Queue:  45.26 | Wait:  320.23s | Loss: 0.040296 | eps: 0.246 | Time: 2.6s
+2026-04-16 23:57:42 | INFO     | rl_agents.train_agent | Ep [ 290/300] | Reward: -205.0815 | Avg(20): -204.2496 | Queue:  43.26 | Wait:  312.40s | Loss: 0.036654 | eps: 0.234 | Time: 2.5s
+2026-04-16 23:58:06 | INFO     | rl_agents.train_agent | Ep [ 300/300] | Reward: -211.1860 | Avg(20): -201.8208 | Queue:  52.62 | Wait:  309.55s | Loss: 0.036022 | eps: 0.222 | Time: 2.5s
+2026-04-16 23:58:06 | INFO     | rl_agents.train_agent | 
+Training complete! Best model saved to: rl_agents/best_dqn.pth
+2026-04-16 23:58:06 | INFO     | rl_agents.train_agent | Training history saved.
+2026-04-16 23:58:07 | INFO     | rl_agents.train_agent | Training plots saved to evaluation/results/rl_training_curves.png
+2026-04-16 23:58:07 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-16 23:58:07 | INFO     | rl_agents.agent | DQN checkpoint loaded: rl_agents/best_dqn.pth
+  Episode: 195,   Best reward: -200.5321
+2026-04-16 23:58:07 | INFO     | integration.pipeline | DQN agent loaded from checkpoint.
+2026-04-16 23:58:07 | INFO     | __main__ | Done.
+2026-04-17 15:53:34 | INFO     | __main__ | ============================================================
+2026-04-17 15:53:34 | INFO     | __main__ | Traffic Signal Optimization System
+2026-04-17 15:53:34 | INFO     | __main__ | Mode: TRAIN_ALL
+2026-04-17 15:53:34 | INFO     | __main__ | Config: config/config.yaml
+2026-04-17 15:53:34 | INFO     | __main__ | SUMO binary: sumo-gui
+2026-04-17 15:53:34 | INFO     | __main__ | ============================================================
+2026-04-17 15:53:39 | INFO     | integration.pipeline | TrafficPipeline initialized on device: cpu
+2026-04-17 15:53:39 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-17 15:53:39 | INFO     | integration.pipeline | Graph built: 4 nodes
+2026-04-17 15:53:39 | INFO     | __main__ | 
+============================================================
+2026-04-17 15:53:39 | INFO     | __main__ | PHASE 1: Training STGCN Prediction Model
+2026-04-17 15:53:39 | INFO     | __main__ | ============================================================
+2026-04-17 15:53:39 | INFO     | integration.pipeline | Pipeline Step: Training STGCN...
+2026-04-17 15:53:39 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-17 15:53:39 | INFO     | models.stgcn.train_stgcn | STGCN Training — Starting data collection
+2026-04-17 15:53:39 | INFO     | models.stgcn.train_stgcn | ============================================================
+2026-04-17 15:53:40 | INFO     | models.stgcn.train_stgcn | SUMO not found — using SyntheticTrafficEnv (Python fallback).
+2026-04-17 15:53:40 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-17 15:53:40 | INFO     | models.stgcn.train_stgcn | No cache found — collecting data from SyntheticTrafficEnv...
+2026-04-17 15:53:40 | INFO     | models.stgcn.train_stgcn | History data cached to data/processed/stgcn_history.npz
+2026-04-17 15:53:40 | INFO     | models.stgcn.train_stgcn | Total data collected: 500 timesteps
+2026-04-17 15:53:40 | INFO     | preprocessing.data_cleaning | Cleaned traffic data: T=500 timesteps, N=4 roads.
+2026-04-17 15:53:40 | INFO     | preprocessing.data_cleaning | STGCN data prepared: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-17 15:53:40 | INFO     | models.stgcn.train_stgcn | Sequences ready: X=(488, 12, 4, 1), y=(488, 4)
+2026-04-17 15:53:40 | INFO     | preprocessing.graph_builder | Graph built: 4 nodes, Ks=3, A_hat range=[0.200, 0.400]
+2026-04-17 15:53:40 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-17 15:53:40 | INFO     | models.stgcn.train_stgcn | Training STGCN on device: cpu
+2026-04-17 15:53:43 | INFO     | models.stgcn.train_stgcn | Training: 391 samples | Validation: 97 samples
+2026-04-17 15:53:43 | INFO     | models.stgcn.train_stgcn | Epochs: 50 | Batch size: 32 | LR: 0.001
+2026-04-17 15:53:44 | INFO     | models.stgcn.train_stgcn | Epoch [  1/50] Train Loss: 0.539803 | Val Loss: 0.167125 | Time: 0.9s
+2026-04-17 15:53:45 | INFO     | models.stgcn.train_stgcn | Epoch [  5/50] Train Loss: 0.021169 | Val Loss: 0.022699 | Time: 0.3s
+2026-04-17 15:53:47 | INFO     | models.stgcn.train_stgcn | Epoch [ 10/50] Train Loss: 0.014335 | Val Loss: 0.007929 | Time: 0.3s
+2026-04-17 15:53:49 | INFO     | models.stgcn.train_stgcn | Epoch [ 15/50] Train Loss: 0.010878 | Val Loss: 0.008867 | Time: 0.3s
+2026-04-17 15:53:50 | INFO     | models.stgcn.train_stgcn | Epoch [ 20/50] Train Loss: 0.008894 | Val Loss: 0.006982 | Time: 0.3s
+2026-04-17 15:53:52 | INFO     | models.stgcn.train_stgcn | Epoch [ 25/50] Train Loss: 0.007142 | Val Loss: 0.004625 | Time: 0.4s
+2026-04-17 15:53:54 | INFO     | models.stgcn.train_stgcn | Epoch [ 30/50] Train Loss: 0.007093 | Val Loss: 0.005523 | Time: 0.3s
+2026-04-17 15:53:55 | INFO     | models.stgcn.train_stgcn | Epoch [ 35/50] Train Loss: 0.005918 | Val Loss: 0.005981 | Time: 0.3s
+2026-04-17 15:53:57 | INFO     | models.stgcn.train_stgcn | Epoch [ 40/50] Train Loss: 0.005750 | Val Loss: 0.004061 | Time: 0.3s
+2026-04-17 15:53:59 | INFO     | models.stgcn.train_stgcn | Epoch [ 45/50] Train Loss: 0.005642 | Val Loss: 0.006386 | Time: 0.3s
+2026-04-17 15:54:00 | INFO     | models.stgcn.train_stgcn | Epoch [ 50/50] Train Loss: 0.005275 | Val Loss: 0.003583 | Time: 0.3s
+2026-04-17 15:54:00 | INFO     | models.stgcn.train_stgcn | 
+Training complete. Best model: epoch 47, val_loss=0.003453
+2026-04-17 15:54:00 | INFO     | models.stgcn.train_stgcn | Checkpoint saved to: models/stgcn/best_model.pth
+2026-04-17 15:54:03 | INFO     | models.stgcn.train_stgcn | Training loss plot saved to evaluation/results/stgcn_training_loss.png
+2026-04-17 15:54:03 | INFO     | models.stgcn.stgcn_model | STGCN initialized: nodes=4, in=1, hidden=16, out=64, Ks=3, blocks=2
+2026-04-17 15:54:03 | INFO     | models.stgcn.train_stgcn | Loaded STGCN checkpoint from epoch 47 (val_loss=0.003453)
+2026-04-17 15:54:03 | INFO     | integration.pipeline | STGCN model loaded from checkpoint.
+2026-04-17 15:54:03 | INFO     | __main__ | 
+============================================================
+2026-04-17 15:54:03 | INFO     | __main__ | PHASE 2: Training DQN RL Agent
+2026-04-17 15:54:03 | INFO     | __main__ | ============================================================
+2026-04-17 15:54:03 | INFO     | integration.pipeline | Pipeline Step: Training DQN Agent...
+2026-04-17 15:54:03 | INFO     | rl_agents.train_agent | RL Training on device: cpu
+2026-04-17 15:54:03 | INFO     | rl_agents.train_agent | Using SyntheticTrafficEnv (SUMO not found).
+2026-04-17 15:54:03 | INFO     | simulation.synthetic_env | SyntheticTrafficEnv initialized (SUMO fallback mode)
+2026-04-17 15:54:03 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-17 15:54:03 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-17 15:54:03 | INFO     | rl_agents.train_agent | DQN Training: 200 episodes
+2026-04-17 15:54:03 | INFO     | rl_agents.train_agent | Agent: DQNAgent(state=12, actions=4, epsilon=1.000, buffer=0/50000, steps=0)
+2026-04-17 15:54:03 | INFO     | rl_agents.train_agent | ============================================================
+2026-04-17 15:54:05 | INFO     | rl_agents.train_agent | Ep [   1/200] | Reward: -63.9804 | Avg(20): -63.9804 | Queue:   6.97 | Wait:  262.01s | Loss: 0.022518 | eps: 0.992 | Time: 2.7s
+2026-04-17 15:54:33 | INFO     | rl_agents.train_agent | Ep [  10/200] | Reward: -62.5566 | Avg(20): -64.3249 | Queue:   8.34 | Wait:  224.08s | Loss: 0.011485 | eps: 0.923 | Time: 2.9s
+2026-04-17 15:55:02 | INFO     | rl_agents.train_agent | Ep [  20/200] | Reward: -60.9340 | Avg(20): -63.6840 | Queue:   7.20 | Wait:  239.60s | Loss: 0.002785 | eps: 0.852 | Time: 2.9s
+2026-04-17 15:55:33 | INFO     | rl_agents.train_agent | Ep [  30/200] | Reward: -62.0937 | Avg(20): -62.8642 | Queue:   6.80 | Wait:  255.17s | Loss: 0.001488 | eps: 0.786 | Time: 3.0s
+2026-04-17 15:56:03 | INFO     | rl_agents.train_agent | Ep [  40/200] | Reward: -60.1949 | Avg(20): -61.8409 | Queue:   6.17 | Wait:  256.29s | Loss: 0.000935 | eps: 0.725 | Time: 2.9s
+2026-04-17 15:56:32 | INFO     | rl_agents.train_agent | Ep [  50/200] | Reward: -60.6946 | Avg(20): -61.9529 | Queue:   6.21 | Wait:  258.73s | Loss: 0.001033 | eps: 0.669 | Time: 2.9s
+2026-04-17 15:57:01 | INFO     | rl_agents.train_agent | Ep [  60/200] | Reward: -59.6929 | Avg(20): -62.7347 | Queue:   5.57 | Wait:  265.78s | Loss: 0.001256 | eps: 0.618 | Time: 2.9s
+2026-04-17 15:57:34 | INFO     | rl_agents.train_agent | Ep [  70/200] | Reward: -60.6982 | Avg(20): -62.0621 | Queue:   5.69 | Wait:  272.55s | Loss: 0.001646 | eps: 0.570 | Time: 2.9s
+2026-04-17 15:58:04 | INFO     | rl_agents.train_agent | Ep [  80/200] | Reward: -59.2590 | Avg(20): -62.0945 | Queue:   5.76 | Wait:  259.32s | Loss: 0.002260 | eps: 0.526 | Time: 2.9s
+2026-04-17 15:58:34 | INFO     | rl_agents.train_agent | Ep [  90/200] | Reward: -61.4353 | Avg(20): -61.8088 | Queue:   5.62 | Wait:  275.72s | Loss: 0.003185 | eps: 0.485 | Time: 2.9s
+2026-04-17 15:59:04 | INFO     | rl_agents.train_agent | Ep [ 100/200] | Reward: -65.3701 | Avg(20): -62.5006 | Queue:   5.47 | Wait:  305.62s | Loss: 0.003429 | eps: 0.448 | Time: 3.0s
+2026-04-17 15:59:34 | INFO     | rl_agents.train_agent | Ep [ 110/200] | Reward: -55.7323 | Avg(20): -62.6772 | Queue:   5.79 | Wait:  236.38s | Loss: 0.004588 | eps: 0.413 | Time: 3.0s
+2026-04-17 16:00:03 | INFO     | rl_agents.train_agent | Ep [ 120/200] | Reward: -67.3074 | Avg(20): -62.7849 | Queue:   5.42 | Wait:  322.14s | Loss: 0.004330 | eps: 0.381 | Time: 2.9s
+2026-04-17 16:00:34 | INFO     | rl_agents.train_agent | Ep [ 130/200] | Reward: -69.9397 | Avg(20): -65.6537 | Queue:   5.11 | Wait:  346.52s | Loss: 0.005521 | eps: 0.352 | Time: 3.8s
+2026-04-17 16:02:58 | INFO     | rl_agents.train_agent | Ep [ 140/200] | Reward: -64.3676 | Avg(20): -65.1642 | Queue:   4.98 | Wait:  311.53s | Loss: 0.006091 | eps: 0.325 | Time: 9.0s
+2026-04-17 16:03:45 | INFO     | rl_agents.train_agent | Ep [ 150/200] | Reward: -57.5442 | Avg(20): -62.8072 | Queue:   5.01 | Wait:  265.64s | Loss: 0.006768 | eps: 0.300 | Time: 3.2s
+2026-04-17 16:06:19 | INFO     | rl_agents.train_agent | Ep [ 160/200] | Reward: -65.9666 | Avg(20): -62.1999 | Queue:   5.06 | Wait:  321.08s | Loss: 0.008113 | eps: 0.277 | Time: 3.2s
+2026-04-17 16:06:51 | INFO     | rl_agents.train_agent | Ep [ 170/200] | Reward: -69.4774 | Avg(20): -62.7971 | Queue:   4.76 | Wait:  348.70s | Loss: 0.007500 | eps: 0.255 | Time: 3.0s
+2026-04-17 16:07:23 | INFO     | rl_agents.train_agent | Ep [ 180/200] | Reward: -71.8116 | Avg(20): -64.9528 | Queue:   4.79 | Wait:  364.64s | Loss: 0.007882 | eps: 0.236 | Time: 3.0s
+2026-04-17 16:07:54 | INFO     | rl_agents.train_agent | Ep [ 190/200] | Reward: -58.9344 | Avg(20): -65.3309 | Queue:   4.90 | Wait:  278.57s | Loss: 0.008169 | eps: 0.217 | Time: 3.0s
+2026-04-17 16:08:28 | INFO     | rl_agents.train_agent | Ep [ 200/200] | Reward: -68.1943 | Avg(20): -67.8775 | Queue:   4.73 | Wait:  340.05s | Loss: 0.009075 | eps: 0.201 | Time: 3.6s
+2026-04-17 16:08:28 | INFO     | rl_agents.train_agent | 
+Training complete! Best model saved to: rl_agents/best_dqn.pth
+2026-04-17 16:08:28 | INFO     | rl_agents.train_agent | Training history saved.
+2026-04-17 16:08:30 | INFO     | rl_agents.train_agent | Training plots saved to evaluation/results/rl_training_curves.png
+2026-04-17 16:08:30 | INFO     | rl_agents.agent | DQNAgent initialized: state_dim=12, action_dim=4, device=cpu
+2026-04-17 16:08:30 | INFO     | rl_agents.agent | DQN checkpoint loaded: rl_agents/best_dqn.pth
+  Episode: 155,   Best reward: -61.4483
+2026-04-17 16:08:30 | INFO     | integration.pipeline | DQN agent loaded from checkpoint.
+2026-04-17 16:08:30 | INFO     | __main__ | Done.

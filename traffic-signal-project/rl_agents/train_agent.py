@@ -28,17 +28,24 @@ logger = logging.getLogger(__name__)
 
 
 def _make_env(config: dict, use_gui: bool = False):
-    """Auto-detect SUMO; fall back to SyntheticTrafficEnv if not installed."""
+    """
+    Auto-detect SUMO; fall back to SyntheticTrafficEnv if SUMO is not installed
+    or its network XML is broken (connection error on start).
+    """
     sumo_home = os.environ.get("SUMO_HOME", "")
     if sumo_home:
         try:
             from simulation.sumo_env import SumoEnvironment
-            logger.info("SUMO detected — using SumoEnvironment.")
+            env = SumoEnvironment(config, use_gui=use_gui)
+            # Probe-start to catch broken network XML before training loop begins
+            env.start()
+            env.close()
+            logger.info("SUMO detected and validated — using SumoEnvironment.")
             return SumoEnvironment(config, use_gui=use_gui)
         except Exception as e:
-            logger.warning(f"SUMO failed ({e}). Using synthetic env.")
+            logger.warning(f"SUMO unavailable ({e}). Using SyntheticTrafficEnv.")
     from simulation.synthetic_env import SyntheticTrafficEnv
-    logger.info("Using SyntheticTrafficEnv (SUMO not found).")
+    logger.info("Using SyntheticTrafficEnv (SUMO not available).")
     return SyntheticTrafficEnv(config)
 
 
@@ -47,6 +54,8 @@ def run_rl_training(
     stgcn_model=None,
     use_gui: bool = False,
     resume: bool = False,
+    num_episodes: int = None,
+    device=None,
 ) -> dict:
     """
     Full DQN training loop.
@@ -57,6 +66,8 @@ def run_rl_training(
     stgcn_model : STGCN (optional) — if None, predicted traffic = zeros
     use_gui : bool — launch SUMO-GUI (slow) or headless (fast)
     resume : bool — load existing checkpoint and continue training
+    num_episodes : int (optional) — overrides config value if provided
+    device : torch.device (optional) — overrides auto-detection if provided
 
     Returns
     -------
@@ -67,7 +78,9 @@ def run_rl_training(
     import torch
 
     rl_cfg = config.get("rl", {})
-    num_episodes = rl_cfg.get("episodes", 300)
+    # num_episodes arg overrides config
+    if num_episodes is None:
+        num_episodes = rl_cfg.get("episodes", 300)
     checkpoint_path = rl_cfg.get("checkpoint_path", "rl_agents/best_dqn.pth")
     log_interval = config.get("logging", {}).get("log_interval", 10)
 
@@ -75,7 +88,9 @@ def run_rl_training(
     os.makedirs("evaluation/results", exist_ok=True)
     os.makedirs("logs", exist_ok=True)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # device arg overrides auto-detection
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info(f"RL Training on device: {device}")
 
     # --------------- Initialize Components ---------------
@@ -130,10 +145,10 @@ def run_rl_training(
             if loss is not None:
                 episode_losses.append(loss)
 
-            # Track metrics
+            # Track metrics — use per-road mean so numbers stay in human-readable range
             episode_reward += reward
-            episode_queues.append(float(info["queue_lengths"].sum()))
-            episode_waits.append(float(info["waiting_times"].sum()))
+            episode_queues.append(float(info["queue_lengths"].mean()))   # mean per road
+            episode_waits.append(float(info["waiting_times"].mean()))    # mean per road
 
             state = next_state
 

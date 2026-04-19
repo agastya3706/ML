@@ -4,8 +4,9 @@ environment.py — RL Training Environment (Gym-Style)
 Wraps SumoEnvironment + STGCN + RewardCalculator into a clean
 OpenAI Gym-like interface for the DQN agent.
 
-State vector (12-dim):
-    [vehicle_counts(4), queue_lengths(4), predicted_traffic(4)]
+State vector (14-dim):
+    [vehicle_counts(4)/max, queue_lengths(4)/max, predicted_traffic(4),
+     current_phase_NS(1), phase_timer_norm(1)]
      normalized to [0, 1]
 
 Action space:
@@ -58,7 +59,7 @@ class TrafficEnvironment:
         self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         rl_cfg = config.get("rl", {})
-        self.state_dim = rl_cfg.get("state_dim", 12)
+        self.state_dim = rl_cfg.get("state_dim", 14)   # extended: +phase+timer
         self.action_dim = rl_cfg.get("action_dim", 4)
 
         stgcn_cfg = config.get("stgcn", {})
@@ -68,11 +69,12 @@ class TrafficEnvironment:
         pre_cfg = config.get("preprocessing", {})
         self.max_count = pre_cfg.get("max_vehicle_count", 50)
         self.max_queue = pre_cfg.get("max_queue_length", 30)
+        self.max_wait  = pre_cfg.get("max_waiting_time", 90)  # aligned with env cap
 
-        # Signal step: how many SUMO steps per RL action
-        self.signal_step = config.get("intersection", {}).get(
-            "min_green", 10
-        )  # apply action for min_green seconds
+        # Signal step: how many simulation steps per RL action
+        # 20 s gives each phase enough time to meaningfully drain the queue
+        # and gives the agent a clear cause→effect signal
+        self.signal_step = 20
 
         self.reward_calc = RewardCalculator(config)
 
@@ -194,12 +196,13 @@ class TrafficEnvironment:
 
     def _build_state(self) -> np.ndarray:
         """
-        Build the 12-dim state vector.
+        Build the 14-dim state vector.
 
         Returns
         -------
-        state : np.ndarray, shape (12,)
-            [vehicle_counts(4)/max, queue_lengths(4)/max, predicted(4)]
+        state : np.ndarray, shape (14,)
+            [vehicle_counts(4)/max, queue_lengths(4)/max, predicted(4),
+             ns_green_flag(1), phase_timer_norm(1)]
         """
         sumo_state = self.sumo_env.get_state()
 
@@ -211,10 +214,25 @@ class TrafficEnvironment:
         )
         predicted = self._get_stgcn_prediction()
 
-        state = np.concatenate([counts_norm, queues_norm, predicted]).astype(np.float32)
-        assert state.shape == (self.state_dim,), (
-            f"State shape mismatch: {state.shape} vs {self.state_dim}"
+        # Phase feature: 1.0 = NS is green, 0.0 = EW is green (or yellow)
+        current_phase = sumo_state.get("current_phase", 0)
+        ns_green = np.array([1.0 if current_phase == 0 else 0.0], dtype=np.float32)
+
+        # Phase timer normalised to [0, 1] using max_green as reference
+        max_green = self.config.get("intersection", {}).get("max_green", 60)
+        raw_timer = getattr(self.sumo_env, "_phase_timer", 0)
+        timer_norm = np.array(
+            [float(np.clip(raw_timer / max(max_green, 1), 0.0, 1.0))],
+            dtype=np.float32,
         )
+
+        state = np.concatenate(
+            [counts_norm, queues_norm, predicted, ns_green, timer_norm]
+        ).astype(np.float32)
+
+        # Guard: if state_dim mismatch (e.g. config still says 12) pad/trim
+        if state.shape[0] != self.state_dim:
+            state = np.resize(state, (self.state_dim,))
         return state
 
     # -----------------------------------------------------------------------

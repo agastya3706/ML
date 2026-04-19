@@ -292,21 +292,35 @@ class DQNAgent:
 
     def save(self, path: Optional[str] = None, episode: int = 0, reward: float = 0.0) -> None:
         """Save agent checkpoint."""
+        import time
         path = path or self.checkpoint_path
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        torch.save(
-            {
-                "episode": episode,
-                "policy_net": self.policy_net.state_dict(),
-                "target_net": self.target_net.state_dict(),
-                "optimizer": self.optimizer.state_dict(),
-                "epsilon": self.epsilon,
-                "step_count": self._step_count,
-                "best_reward": reward,
-            },
-            path,
-        )
-        logger.debug(f"DQN checkpoint saved: {path} (episode={episode})")
+        
+        state_dict = {
+            "episode": episode,
+            "policy_net": self.policy_net.state_dict(),
+            "target_net": self.target_net.state_dict(),
+            "optimizer": self.optimizer.state_dict(),
+            "epsilon": self.epsilon,
+            "step_count": self._step_count,
+            "best_reward": reward,
+        }
+        
+        # Retry loop for Windows file locking issues (e.g., OneDrive syncing)
+        max_retries = 5
+        for attempt in range(max_retries):
+            try:
+                torch.save(state_dict, path)
+                logger.debug(f"DQN checkpoint saved: {path} (episode={episode})")
+                break
+            except (RuntimeError, OSError) as e:
+                # Catch error 32 / sharing violation
+                if attempt < max_retries - 1:
+                    logger.debug(f"Save failed ({e}). Retrying in 0.5s... ({attempt + 1}/{max_retries})")
+                    time.sleep(0.5)
+                else:
+                    logger.error(f"Failed to save checkpoint after {max_retries} attempts: {e}")
+                    raise
 
     def load(self, path: Optional[str] = None) -> None:
         """Load agent from checkpoint."""

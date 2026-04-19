@@ -297,7 +297,21 @@ def run_stgcn_training(config: dict) -> None:
     else:
         env = _make_env(config)
         logger.info(f"No cache found — collecting data from {type(env).__name__}...")
-        env.start()
+        try:
+            env.start()
+        except Exception as start_err:
+            # SUMO may crash on broken network XML — fall back to synthetic env
+            logger.warning(
+                f"env.start() failed ({start_err}). "
+                "Retrying with SyntheticTrafficEnv..."
+            )
+            try:
+                env.close()
+            except Exception:
+                pass
+            from simulation.synthetic_env import SyntheticTrafficEnv
+            env = SyntheticTrafficEnv(config)
+            env.start()
 
         warmup_steps = config.get("stgcn", {}).get("history_buffer_size", 500)
         for step in range(warmup_steps):

@@ -37,7 +37,7 @@ intersection:
       state: "rGrG"
     - duration: 5                             # EW yellow
       state: "ryry"
-  min_green: 10                               # Minimum green time (seconds)
+  min_green: 15                               # Minimum green time (seconds) — realistic
   max_green: 60                               # Maximum green time (seconds)
 
 # -----------------------------------------------------------
@@ -61,18 +61,21 @@ stgcn:
 # RL Agent (DQN) Settings
 # -----------------------------------------------------------
 rl:
-  state_dim: 12                               # [counts(4), queues(4), predicted(4)]
-  action_dim: 4                               # One action per approach road
-  learning_rate: 0.001
-  gamma: 0.95                                 # Discount factor
-  epsilon_start: 1.0                          # Initial exploration rate
-  epsilon_decay: 0.995
-  epsilon_min: 0.01
-  batch_size: 64
-  memory_size: 10000                          # Replay buffer size
-  target_update_freq: 10                      # Episodes between target net sync
-  episodes: 300                               # Total training episodes
+  state_dim: 14                               # [counts(4), queues(4), predicted(4), phase(1), timer(1)]
+  action_dim: 4                               # 0/1=NS/EW normal, 2/3=NS/EW extended
+  learning_rate: 0.0003                       # Slightly lower LR for stable value estimates
+  gamma: 0.99                                 # High discount — prioritise long-term clearance
+  epsilon_start: 1.0
+  epsilon_decay: 0.993                        # Slower decay — need more exploration for imbalance
+  epsilon_min: 0.05
+  batch_size: 64                              # Smaller batches, higher frequency updates
+  memory_size: 50000                          # Large replay buffer for diverse experience
+  target_update_freq: 5                       # Sync target net every 5 episodes (faster)
+  episodes: 300                               # More episodes for balanced policy
   checkpoint_path: "rl_agents/best_dqn.pth"
+  reward_weights:
+    queue: 0.55
+    wait: 0.45
 
 # -----------------------------------------------------------
 # Preprocessing Settings
@@ -80,9 +83,9 @@ rl:
 preprocessing:
   normalize: true
   normalize_method: "minmax"                  # Options: minmax, zscore
-  max_vehicle_count: 50                       # For normalization
-  max_queue_length: 30
-  max_waiting_time: 120
+  max_vehicle_count: 30                       # Realistic: max vehicles visible on approach
+  max_queue_length: 20                        # Realistic: max queue at urban single-lane road
+  max_waiting_time: 60                        # Realistic: max wait at a signalled intersection
 
 # -----------------------------------------------------------
 # Evaluation Settings

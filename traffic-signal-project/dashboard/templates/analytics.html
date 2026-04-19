@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics — Traffic Signal AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    .analytics-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; border-bottom: 1px solid var(--border);
+      background: rgba(8,13,20,0.85); backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .analytics-header h1 { font-size: 1.2rem; font-weight: 700; }
+    .analytics-header .nav-links a {
+      color: var(--text-dim); text-decoration: none; margin-left: 20px;
+      font-size: 0.85rem; transition: color .2s;
+    }
+    .analytics-header .nav-links a:hover { color: var(--blue); }
+    .analytics-header .nav-links a.active { color: var(--blue); font-weight: 600; }
+
+    .analytics-body { max-width: 1400px; margin: 0 auto; padding: 28px 24px; }
+
+    .run-bar {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+      padding: 16px 20px;
+      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+    }
+    .run-bar p { flex: 1; font-size: 0.85rem; color: var(--text-dim); }
+    .run-btn {
+      padding: 10px 28px; border-radius: var(--radius-sm);
+      border: 1px solid rgba(59,130,246,0.5); background: rgba(59,130,246,0.15);
+      color: var(--blue); font-size: 0.9rem; font-weight: 600; cursor: pointer;
+      transition: all .2s; font-family: var(--font);
+    }
+    .run-btn:hover { background: rgba(59,130,246,0.3); transform: translateY(-1px); }
+    .run-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .spinner { display: none; width: 20px; height: 20px; border: 2px solid var(--border);
+      border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 28px; }
+    .kpi-mini {
+      padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--bg-3); text-align: center;
+    }
+    .kpi-mini .km-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+    .kpi-mini .km-val   { font-size: 1.6rem; font-weight: 700; font-family: var(--mono); margin: 8px 0 4px; }
+    .kpi-mini .km-sub   { font-size: 0.7rem; color: var(--text-muted); }
+    .good  { color: var(--green) !important; }
+    .ok    { color: var(--cyan)  !important; }
+    .warn  { color: var(--orange)!important; }
+    .bad   { color: var(--red)   !important; }
+
+    .report-img-section {
+      padding: 20px; border-radius: var(--radius); border: 1px solid var(--border);
+      background: var(--glass); backdrop-filter: blur(12px);
+    }
+    .report-img-section h2 { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 16px; }
+    #report-img { width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border); display: none; }
+    #img-placeholder {
+      text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 0.9rem;
+    }
+    .status-bar { padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 20px;
+      font-size: 0.8rem; display: none; }
+    .status-bar.error   { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: var(--red); }
+    .status-bar.success { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3); color: var(--green); }
+  </style>
+</head>
+<body>
+  <header class="analytics-header">
+    <div class="logo">
+      <span class="logo-icon">📊</span>
+      <div>
+        <h1>Model Analytics</h1>
+        <p class="subtitle">Reward Tracking · STGCN Accuracy · Policy Comparison</p>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="/">Simulation</a>
+      <a href="/analytics" class="active">Analytics</a>
+    </nav>
+  </header>
+
+  <div class="analytics-body">
+
+    <!-- Run bar -->
+    <div class="run-bar">
+      <p>Click <strong>Run Analysis</strong> to compute reward metrics, STGCN prediction accuracy, and policy comparison. Takes ~15 seconds.</p>
+      <div class="spinner" id="spinner"></div>
+      <button class="run-btn" id="run-btn" onclick="runAnalysis()">Run Analysis</button>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar" id="status-bar"></div>
+
+    <!-- KPI Mini Cards -->
+    <div class="kpi-row" id="kpi-row" style="display:none">
+      <div class="kpi-mini">
+        <div class="km-label">STGCN R² Score</div>
+        <div class="km-val" id="kpi-r2">—</div>
+        <div class="km-sub">1.0 = perfect prediction</div>
+      </div>
+      <div class="kpi-mini">
+        <div class="km-label">STGCN MAE</div>
+        <div class="km-val" id="kpi-mae">—</div>
+        <div class="km-sub">Mean absolute error</div>
+      </div>
+      <div class="kpi-mini">
+        <div class="km-label">DQN Best Reward</div>
+        <div class="km-val" id="kpi-best-r">—</div>
+        <div class="km-sub">Best episode reward</div>
+      </div>
+      <div class="kpi-mini">
+        <div class="km-label">DQN Last 20 Avg</div>
+        <div class="km-val" id="kpi-last20">—</div>
+        <div class="km-sub">Recent performance</div>
+      </div>
+      <div class="kpi-mini">
+        <div class="km-label">Improvement</div>
+        <div class="km-val" id="kpi-improv">—</div>
+        <div class="km-sub">Episode 1 → last 20</div>
+      </div>
+      <div class="kpi-mini">
+        <div class="km-label">DQN vs Fixed Queue</div>
+        <div class="km-val" id="kpi-vs-fixed">—</div>
+        <div class="km-sub">Queue reduction</div>
+      </div>
+      <div class="kpi-mini">
+        <div class="km-label">DQN vs Random Queue</div>
+        <div class="km-val" id="kpi-vs-random">—</div>
+        <div class="km-sub">Queue reduction</div>
+      </div>
+    </div>
+
+    <!-- Full report image -->
+    <div class="report-img-section">
+      <h2>Full Training Report</h2>
+      <div id="img-placeholder">
+        <p>🔬 Click <strong>Run Analysis</strong> to generate the full report chart.</p>
+        <p style="margin-top:8px; font-size:0.75rem;">
+          You can also run it from the terminal:<br>
+          <code style="background:var(--bg-3); padding:4px 8px; border-radius:4px;">python evaluation/analyze.py</code>
+        </p>
+      </div>
+      <img id="report-img" alt="Analytics Report" />
+    </div>
+
+  </div>
+
+  <script>
+    async function runAnalysis() {
+      const btn     = document.getElementById("run-btn");
+      const spinner = document.getElementById("spinner");
+      const status  = document.getElementById("status-bar");
+
+      btn.disabled = true;
+      btn.textContent = "Running...";
+      spinner.style.display = "block";
+      status.style.display  = "none";
+
+      try {
+        const res  = await fetch("/analytics_data");
+        const data = await res.json();
+
+        if (data.status !== "ok") throw new Error(data.message || "Unknown error");
+
+        populateKPIs(data.summary);
+
+        // Refresh the report image with cache-buster
+        const img = document.getElementById("report-img");
+        const ph  = document.getElementById("img-placeholder");
+        img.src   = `/analytics_image?t=${Date.now()}`;
+        img.onload = () => { img.style.display = "block"; ph.style.display = "none"; };
+
+        document.getElementById("kpi-row").style.display = "grid";
+
+        status.className     = "status-bar success";
+        status.textContent   = "Analysis complete! Report generated below.";
+        status.style.display = "block";
+
+      } catch (e) {
+        status.className     = "status-bar error";
+        status.textContent   = "Error: " + e.message;
+        status.style.display = "block";
+      } finally {
+        btn.disabled     = false;
+        btn.textContent  = "Run Analysis";
+        spinner.style.display = "none";
+      }
+    }
+
+    function colorClass(val, thresholds, reversed) {
+      // thresholds: [good, ok, warn]
+      if (reversed) {
+        if (val >=  thresholds[0]) return "good";
+        if (val >=  thresholds[1]) return "ok";
+        if (val >=  thresholds[2]) return "warn";
+        return "bad";
+      } else {
+        if (val <=  thresholds[0]) return "good";
+        if (val <=  thresholds[1]) return "ok";
+        if (val <=  thresholds[2]) return "warn";
+        return "bad";
+      }
+    }
+
+    function populateKPIs(summary) {
+      if (summary.stgcn) {
+        const s = summary.stgcn;
+        const r2El = document.getElementById("kpi-r2");
+        r2El.textContent = s.r2.toFixed(3);
+        r2El.className   = "km-val " + colorClass(s.r2, [0.85, 0.70, 0.50], true);
+
+        const maeEl = document.getElementById("kpi-mae");
+        maeEl.textContent = s.mae.toFixed(4);
+        maeEl.className   = "km-val " + colorClass(s.mae, [0.01, 0.03, 0.06], false);
+      }
+      if (summary.rl) {
+        const r = summary.rl;
+        const brEl = document.getElementById("kpi-best-r");
+        brEl.textContent = r.best_reward.toFixed(4);
+        brEl.className   = "km-val " + colorClass(r.best_reward, [-0.1, -0.25, -0.5], true);
+
+        const l20El = document.getElementById("kpi-last20");
+        l20El.textContent = r.last20_avg.toFixed(4);
+        l20El.className   = "km-val " + colorClass(r.last20_avg, [-0.1, -0.25, -0.5], true);
+
+        const impEl = document.getElementById("kpi-improv");
+        impEl.textContent = (r.improvement_pct >= 0 ? "+" : "") + r.improvement_pct.toFixed(1) + "%";
+        impEl.className   = "km-val " + (r.improvement_pct >= 0 ? "good" : "bad");
+      }
+      if (summary.comparison) {
+        const c = summary.comparison;
+        let dqnQ = c["DQN Agent"]?.avg_queue;
+        if (dqnQ !== undefined) {
+          if (c["Fixed Timing"]) {
+            const pct = ((c["Fixed Timing"].avg_queue - dqnQ) / (c["Fixed Timing"].avg_queue + 1e-8) * 100);
+            const vfEl = document.getElementById("kpi-vs-fixed");
+            vfEl.textContent = (pct >= 0 ? "-" : "+") + Math.abs(pct).toFixed(1) + "%";
+            vfEl.className   = "km-val " + (pct >= 0 ? "good" : "bad");
+          }
+          if (c["Random"]) {
+            const pct2 = ((c["Random"].avg_queue - dqnQ) / (c["Random"].avg_queue + 1e-8) * 100);
+            const vrEl = document.getElementById("kpi-vs-random");
+            vrEl.textContent = (pct2 >= 0 ? "-" : "+") + Math.abs(pct2).toFixed(1) + "%";
+            vrEl.className   = "km-val " + (pct2 >= 0 ? "good" : "bad");
+          }
+        }
+      }
+    }
+
+    // Auto-check if old report image exists
+    window.addEventListener("load", () => {
+      const img = document.getElementById("report-img");
+      img.src = `/analytics_image?t=${Date.now()}`;
+      img.onload = () => {
+        img.style.display = "block";
+        document.getElementById("img-placeholder").style.display = "none";
+      };
+      img.onerror = () => { img.style.display = "none"; };
+    });
+  </script>
+</body>
+</html>
